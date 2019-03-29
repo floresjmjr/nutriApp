@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  header(id='tabs')
+    ul
+      li Search
+      li Daily log
+      li Weely log
+  main
+    form(method='get' action='/basic_report')
+      fieldset(id='search')
+        label(for='search') Search
+        input(type='text' name='search')
+    article(id='displayFood')
+      div#macros
+        section(id='protein')
+        section(id='carbohydrates')
+        section(id='fat')
+      div#vitAndMin
+        section(id='vitamins')
+        section(id='minerals')
+
+      
