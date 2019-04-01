@@ -87,17 +87,31 @@ a {
   font-size: 11px;
 }
 
+
+/* Display Nutritional Information */
 #displayFood {
   font-size: 11px;
+  margin: 10px;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  text-align: center;
 }
 
-#displayFood section {
+#displayFood div {
   display: inline-block;
+  margin-right: 20px;
+}
+
+#displayFood div:last-of-type {
+  margin-right: 0;
 }
 
 #displayFood section {
+  display: block;
   border: 1px solid grey;
-  padding: 0 10px;
+  border-radius: 5px;
+  padding: 0 15px;
+  margin-bottom: 20px;
 }
 
 #displayFood h3 {
@@ -111,9 +125,26 @@ a {
 
 #displayFood li {
   display: block;
+  position: relative;
   margin: 0;
   color: #2d486c;
-  border-top: 1px solid grey;
   border-bottom: 1px solid grey;
+  width: 220px;
+  text-align: left;
 }
+
+#displayFood dt {
+  display: inline-block;
+}
+
+#displayFood dd {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+}
+
+.indent {
+  padding-left: 10px;
+}
+
 
