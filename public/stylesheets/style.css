@@ -67,3 +67,53 @@ li {
   width: 250px;
   height: 20px;
 }
+
+#search input:focus {
+  outline: none;
+  border-color: #cc2900;
+  box-shadow: 2px 5px #888888;
+}
+
+#results li {
+  display: block;
+}
+
+a {
+  color: #2d486c;
+  text-decoration: none;
+}
+
+#listOfGroup li {
+  font-size: 11px;
+}
+
+#displayFood {
+  font-size: 11px;
+}
+
+#displayFood section {
+  display: inline-block;
+}
+
+#displayFood section {
+  border: 1px solid grey;
+  padding: 0 10px;
+}
+
+#displayFood h3 {
+  text-align: center;
+  color: #2d486c;
+}
+
+#displayFood ul {
+  padding: 0;
+}
+
+#displayFood li {
+  display: block;
+  margin: 0;
+  color: #2d486c;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+

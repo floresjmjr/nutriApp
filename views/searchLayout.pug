@@ -1,0 +1,21 @@
+extends layout
+
+block viewSearch
+  header(id='tabs')
+    ul
+      li 
+        a(href='/search') Search
+      li Daily log
+      li Weely log
+  main
+    form(method='get' action='/search/results')
+      fieldset(id='search')
+        //- label(for='category') Category
+        //- select(name='category')
+        //-   option(value='Restaurant Foods')
+        //-   option(value='
+        label(for='query') Search
+        input(type='text' name='query')
+      block viewResults
+
+      

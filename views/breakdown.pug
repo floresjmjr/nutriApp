@@ -1,0 +1,36 @@
+extends searchLayout
+
+block viewResults
+  article(id='displayFood')
+    h3= item.name
+    div#macros
+      section(id='protein')
+        h3 Proximates
+        ul
+          each proximate in item.proximates
+            li #{proximate.name} - #{proximate.value} #{proximate.unit}
+
+      section(id='carbohydrates')
+        h3 Others
+        ul
+          each other in item.others
+            li #{other.name} - #{other.value} #{other.unit}
+
+      section(id='fat')
+        h3 Fats & Fatty Acids
+        ul
+          each lipid in item.lipids
+            li #{lipid.name} - #{lipid.value} #{lipid.unit}
+
+    div#vitAndMin
+      section(id='vitamins')
+        h3 Vitamins
+        ul
+          each vitamin in item.vitamins
+            li #{vitamin.name} - #{vitamin.value} #{vitamin.unit}
+
+      section(id='minerals')
+        h3 Minerals
+        ul
+          each mineral in item.minerals
+            li #{mineral.name} - #{mineral.value} #{mineral.unit}

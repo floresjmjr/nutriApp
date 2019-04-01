@@ -1,0 +1,11 @@
+extends searchLayout
+
+block viewResults
+  h2 Results for 
+    i "#{searchTerm}".
+  ul#results
+    each group in foodGroups
+      li 
+        h4 
+          a(href='/selection/' + group.id target='_self') #{group.name} (#{group.items.length})
+
