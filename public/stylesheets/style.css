@@ -43,13 +43,14 @@ main {
   border-radius: 5px;
 }
 
-h2 {
+nav h2 {
   text-align: center;
   margin: 40px 0;
 }
 
-fieldset {
+#search {
   padding: 20px;
+  padding-top: 40px;
   border: none;
   text-align: center;
 }
@@ -74,8 +75,20 @@ li {
   box-shadow: 2px 5px #888888;
 }
 
+#search select {
+  margin-left: 10px;
+  height: 20px;
+  background-color: lightskyblue;
+  color: #fff;
+}
+
 #results li {
   display: block;
+}
+
+form h2 {
+  margin: 15px 0;
+  text-align: center;
 }
 
 a {

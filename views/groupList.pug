@@ -1,10 +1,13 @@
 extends searchLayout
 
 block viewResults
-  h3= list.name
+  h3= category.name
     ul(id='listOfGroup') 
-      each item in list.items
-        li
-          a(href='/item/' + item.ndbno) #{item.name}
+      if category.items 
+        each item in category.items
+          li
+            a(href='/item/' + item.ndbno) #{item.name}
+      else
+        h5 The item you searched could not be found.
 
 

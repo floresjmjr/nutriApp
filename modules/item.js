@@ -1,62 +1,140 @@
+// // Item Example Object
+// var itemObj = { 
+//   name: 'Broccoli, raw',
+//   unit: '100g',
+//   vitamins:
+//    [ { nutrient_id: 454,
+//        name: 'Betaine',
+//        group: 'Vitamins',
+//        unit: 'mg',
+//        value: 0.1,
+//        sourcecode: [Array],
+//        dp: 2,
+//        se: '',
+//        derivation: 'NONE',
+//        measures: [Array] },
+//      { nutrient_id: 421,
+//        name: 'Choline',
+//        group: 'Vitamins',
+//        unit: 'mg',
+//        value: 18.7,
+//        sourcecode: [Array],
+//        dp: '',
+//        se: '',
+//        derivation: 'AS',
+//        measures: [Array] },....
+
+
+
 module.exports = {
 
+  vitReferenceArr: [{id: 401, name: 'Vitamin C'}, {id: 404, name: 'Thiamin'}, {id: 405, name: 'Riboflavin'}, {id: 406, name: 'Niacin'}, {id: 410, name: 'Pantothenic acid'}, {id: 415, name: 'Vitamin B-6'}, {id: 417, name: 'Folate'}, {id: 421, name: 'Choline'}, {id: 454, name: 'Betaine'} , {id: 320, name: 'Vitamin A'}, {id: 323, name: 'Vitamin E'}, {id: 430, name: 'Vitamin K'}, {id: 328, name: 'Vitamin D'}, {id: 418, name: 'Vitamin B-12'}],
+  minReferenceArr: [{id: 301, name: 'Calcium'}, {id: 303, name: 'Iron'}, {id: 304, name: 'Magnesium'}, {id: 305, name: 'Phosphorus'}, {id: 306, name: 'Potassium'}, {id: 307, name: 'Sodium'}, {id: 309, name: 'Zinc'}, {id: 312, name: 'Copper'}, {id: 315, name: 'Manganese'}, {id: 317, name: 'Selenium'}],
+ 
   createItemObj: function(rawObj) {
-    var obj = {};
-    obj["name"] = rawObj.name
-    obj['unit'] = '100' + rawObj.ru
+    var newItemObj = {};
+    newItemObj["name"] = rawObj.name
+    newItemObj['unit'] = '100' + rawObj.ru
 
-    var itemNutrients = this.groupById(rawObj.nutrients)
-    obj['vitamins'] = itemNutrients.vitamins
-    obj['minerals'] = itemNutrients.minerals
-    obj['calories'] = itemNutrients.calories
-    obj['proteins'] = itemNutrients.proteins
-    obj['carbs'] = itemNutrients.carbs
-    obj['fats'] = itemNutrients.fats
-    return obj;        
+    var partialItemObj = this.groupNutrientTypes(rawObj.nutrients)
+    partialItemObj = this.reCreateItemObj(partialItemObj)
+    newItemObj['vitamins'] = partialItemObj.vitamins
+    newItemObj['minerals'] = partialItemObj.minerals
+    newItemObj['calories'] = partialItemObj.calories
+    newItemObj['proteins'] = partialItemObj.proteins
+    newItemObj['carbs'] = partialItemObj.carbs
+    newItemObj['fats'] = partialItemObj.fats
+    console.log(newItemObj);
+    return newItemObj;        
   },
 
-  groupById: function(iObjArr) {
-    var obj = {calories: [], proteins: [], carbs: [], fats: [], vitamins: [], minerals: []};
-    //types
-    calories = [208];
-    proteins = [203];
-    carbs = [205, 291, 269]
-    fats = [204, 606, 645, 646];
-    vitamins = [401, 404, 405, 406, 410, 415, 417, 421, 454, 320, 323, 430, 328, 418];
-    minerals = [301, 303, 304, 305, 306, 307, 309, 312, 315, 317]
-    //Collect
-    iObjArr.forEach((nObj)=>{
-      if (calories.includes(nObj.nutrient_id)) {
-        obj.calories.push(this.parseNutritentData(nObj));
+  groupNutrientTypes: function(rawNutrientsArr) {
+    var partialItemObj = {calories: [], proteins: [], carbs: [], fats: [], vitamins: [], minerals: []};
+    //Nutrient Types
+    var calories = [208];
+    var proteins = [203];
+    var carbs = [205, 291, 269]
+    var fats = [204, 606, 645, 646];
+    var mineralIds = this.minReferenceArr.map((obj)=>{return obj.id})
+    var vitaminIds = this.vitReferenceArr.map((obj)=>{return obj.id})
+     //Group by Nutrient Types
+    rawNutrientsArr.forEach((nObj)=>{
+      if (calories.includes(Number(nObj.nutrient_id))) {
+        partialItemObj.calories.push(this.parseNutritentData(nObj));
       }
-      if (proteins.includes(nObj.nutrient_id)) {
-        obj.proteins.push(this.parseNutritentData(nObj));
+      if (proteins.includes(Number(nObj.nutrient_id))) {
+        partialItemObj.proteins.push(this.parseNutritentData(nObj));
       }
-      if (carbs.includes(nObj.nutrient_id)) {
-        obj.carbs.push(this.parseNutritentData(nObj));
+      if (carbs.includes(Number(nObj.nutrient_id))) {
+        partialItemObj.carbs.push(this.parseNutritentData(nObj));
       }
-      if (fats.includes(nObj.nutrient_id)) {
-        obj.fats.push(this.parseNutritentData(nObj));
+      if (fats.includes(Number(nObj.nutrient_id))) {
+        partialItemObj.fats.push(this.parseNutritentData(nObj));
       }
-      if (vitamins.includes(nObj.nutrient_id)) {
-        obj.vitamins.push(this.parseNutritentData(nObj));
+      if (vitaminIds.includes(Number(nObj.nutrient_id))) {
+        partialItemObj.vitamins.push(this.parseNutritentData(nObj));
       }
-      if (minerals.includes(nObj.nutrient_id)) {
-        obj.minerals.push(this.parseNutritentData(nObj));
+      if (mineralIds.includes(Number(nObj.nutrient_id))) {
+        partialItemObj.minerals.push(this.parseNutritentData(nObj));
       }
     })
-    return this.restructureNutrients(obj)
+    return partialItemObj;
   },
 
-  restructureNutrients: function(itemObj) {
+  reCreateItemObj: function(itemObj) {
     itemObj.calories = this.calculateCalories(itemObj);
     itemObj.proteins = this.reProteinsObj(itemObj.proteins);
     itemObj.carbs = this.reCarbsObj(itemObj.carbs);
     itemObj.fats = this.reFatsObj(itemObj.fats);
+
+    //Vitamins and Minerals
+    itemObj.vitamins = this.setViTMinTemplate(itemObj.vitamins, 'vitamins');
+    itemObj.minerals = this.setViTMinTemplate(itemObj.minerals, 'minerals');
+   
     itemObj.vitamins = this.sortNames(itemObj.vitamins);
     itemObj.minerals = this.sortNames(itemObj.minerals);  
     return itemObj;
   },
+
+  setViTMinTemplate: function(nArr, type) {
+    var ids = [];
+    var missingNutrients = [];
+    var queryNutrientIds = nArr.map((nObj)=>{return nObj.nutrient_id})
+    // Create id array for type of nutrient
+    if (type === 'vitamins') {
+      ids = this.vitReferenceArr.map((obj)=>{return obj.id})
+    }
+    if (type === 'minerals') {
+      ids = this.minReferenceArr.map((obj)=>{return obj.id})
+    }
+    // Find which nutrients are missing using the reference data
+    ids.forEach((id, index)=>{
+      if(queryNutrientIds.includes(id)){ 
+      } else {
+        missingNutrients.push(this.createNutrientTemplate(index, type));
+      }
+    })
+    return nArr.concat(missingNutrients)
+  },
+
+  createNutrientTemplate: function(index, type) {
+    newNObj = {};
+    
+    if (type === 'vitamins') {
+      newNObj.nutrient_id = this.vitReferenceArr[index].id
+      newNObj.name = this.vitReferenceArr[index].name
+    }
+    
+    if (type === 'minerals') {
+      newNObj.nutrient_id = this.minReferenceArr[index].id
+      newNObj.name = this.minReferenceArr[index].name 
+    }
+    
+    newNObj['value'] = 'unk';
+    newNObj['unit'] = '';
+    return newNObj;
+  },
+
 
   parseNutritentData: function(nObj) {
     if (nObj.group === 'Lipids') {
@@ -109,7 +187,7 @@ module.exports = {
 
   reProteinsObj: function(nObjArr) {
     var newCatObj = {};
-    newCatObj.total = nObjArr[0]
+    newCatObj.total = {nutrient_id: nObjArr[0].nutrient_id, name: nObjArr[0].name, unit: nObjArr[0].unit, value: nObjArr[0].value}
     return newCatObj;
   },
 
@@ -117,7 +195,7 @@ module.exports = {
     var newCatObj = {'total': {}, 'list': []};
     nObjArr.forEach((nObj)=>{
       if(nObj.name === 'Carbohydrate') {
-        newCatObj.total = nObj
+        newCatObj.total = {nutrient_id: nObj.nutrient_id, name: nObj.name, unit: nObj.unit, value: nObj.value}
       } else {
         newCatObj.list.push(nObj)
       }
@@ -129,7 +207,7 @@ module.exports = {
     var newCatObj = {'total': {}, 'list': []};
     nObjArr.forEach((nObj)=>{
       if(nObj.name === 'Total lipid (fat)') {
-        newCatObj.total = nObj
+        newCatObj.total = {nutrient_id: nObj.nutrient_id, name: nObj.name, unit: nObj.unit, value: nObj.value}
       } else {
         newCatObj.list.push(nObj)
       }

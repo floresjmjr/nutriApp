@@ -1,11 +1,15 @@
 extends searchLayout
 
 block viewResults
-  h2 Results for 
-    i "#{searchTerm}".
-  ul#results
-    each group in foodGroups
-      li 
-        h4 
-          a(href='/selection/' + group.id target='_self') #{group.name} (#{group.items.length})
+  if error
+    h2 No results for 
+      i "#{searchTerm}".
+  else
+    h2 Results for 
+      i "#{searchTerm}".
+    ul#results
+      each category in categories
+        li 
+          h4 
+            a(href='/category/' + category.id target='_self') #{category.name} (#{category.count})
 
