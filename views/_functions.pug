@@ -1,0 +1,62 @@
+-
+  
+  function getDailyValues(nutrient) {
+    switch (Number(nutrient.nutrient_id)) {
+      case 421:
+        return calculateDV(nutrient.value, 550);
+        break;
+      case 417:
+        return calculateDV(nutrient.value, 400);
+      case 406:
+        return calculateDV(nutrient.value, 16);
+      case 410:
+        return calculateDV(nutrient.value, 5);
+      case 405:
+        return calculateDV(nutrient.value, 1.3);
+      case 404:
+        return calculateDV(nutrient.value, 1.2);
+      case 320:
+        return calculateDV(nutrient.value, 900);
+      case 418:
+        return calculateDV(nutrient.value, 2.4);
+      case 415:
+        return calculateDV(nutrient.value, 1.7);
+      case 401:
+        return calculateDV(nutrient.value, 90);
+      case 328:
+        return calculateDV(nutrient.value, 20);
+      case 323:
+        return calculateDV(nutrient.value, 15);
+      case 430:
+        return calculateDV(nutrient.value, 120);
+      case 301:
+        return calculateDV(nutrient.value, 1300);
+      case 312:
+        return calculateDV(nutrient.value, .9);
+      case 303:
+        return calculateDV(nutrient.value, 18);
+      case 304:
+        return calculateDV(nutrient.value, 420);
+      case 315:
+        return calculateDV(nutrient.value, 2.3);
+      case 305:
+        return calculateDV(nutrient.value, 1250);
+      case 306:
+        return calculateDV(nutrient.value, 4700);
+      case 317:
+        return calculateDV(nutrient.value, 55);
+      case 309:
+        return calculateDV(nutrient.value, 11);
+      default: 
+        return '~';
+    }
+  }
+
+  function calculateDV(value, total) {
+    return String(((value / total)*100).toFixed()) + '%'
+  }
+
+  function nutrientHeader() {
+    return {name: 'Amount/Serving', dailyValues: '%DV'}
+  }
+

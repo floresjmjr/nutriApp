@@ -1,21 +1,14 @@
 extends layout
 
-block viewSearch
-  header(id='tabs')
-    ul
-      li 
-        a(href='/search') Search
-      li
-        a(href='/nutrient') Nutrient Lookup
-  main
-    form(method='get' action='/search/results')
-      fieldset(id='search')
-        label(for='query') Search
-        input(type='text' name='query')
-        label(for='db')
-        select(name='db')
-          option(value='SR') by Food Group
-          option(value='LI') by Store Brand
-      block viewResults
+block mainDisplay
+  form(method='get' action='/search/results')
+    fieldset(id='search')
+      label(for='query') Search
+      input(type='text' name='query')
+      label(for='db')
+      select(name='db')
+        option(value='SR') by Food Group
+        option(value='LI') by Store Brand
+  block viewResults
 
       

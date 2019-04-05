@@ -1,0 +1,16 @@
+extends layout
+
+block mainDisplay
+  article#nutrientTable
+    h3 Results for 
+      i "#{nutrientName}"
+    table
+      tr
+        th(class='name') Name of Food
+        th(class='value') Value of Nutrient
+        th %DV
+      each item in items
+        tr
+          td #{item.name} 
+          td #{Number(item.nutrients[0].value).toFixed(2)} #{item.nutrients[0].unit}
+          td #{getDailyValues(item.nutrients[0])}

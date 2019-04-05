@@ -1,0 +1,12 @@
+extends layout
+
+block mainDisplay
+  form(method='get' action='/nutrient/results')
+    fieldset(id='search')
+      label Select Nutrient
+      select(name='nutrient')
+        option(value='' hidden) Select Your Nutrient
+        each nutrient in nutrients
+          option(value=nutrient.id) #{nutrient.name}
+      button(type='submit' value='' name='nutrientName') Submit
+

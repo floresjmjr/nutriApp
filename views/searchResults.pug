@@ -5,7 +5,7 @@ block viewResults
     h2 No results for 
       i "#{searchTerm}".
   else
-    h2 Results for 
+    h2#resultsHeader Results for 
       i "#{searchTerm}".
     ul#results
       each category in categories

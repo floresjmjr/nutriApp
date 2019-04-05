@@ -1,59 +1,85 @@
 extends searchLayout
 
 block viewResults
-  article(id='displayFood')
+  article#displayFood
     h3= item.name
     div#overview
       section(id='calories')
         h3 Calorie Information
-        ul
-          li
-            dt Total Calories 
-            dd #{item.calories.total.value} #{item.calories.total.unit} 
+        table
+          tr
+            th(class='name') #{nutrientHeader().name}
+            th
+            th(class='value') #{nutrientHeader().dailyValues}
+          tr
+            td(class='name') Total Calories 
+            td(class='value') #{item.calories.total.value} #{item.calories.total.unit}
+            td 
           each macro in item.calories.list
-            li 
-              dt(class='indent') #{macro.name}
-              dd(class='indent') #{macro.value} #{macro.unit}
+            tr 
+              td(class='indent name') #{macro.name}
+              td(class='value') #{macro.value} #{macro.unit}
 
       section(id='proteinCarbs')
         h3 Protein and Carbohydrates
-        ul
-          li 
-            dt #{item.proteins.total.name}
-            dd #{item.proteins.total.value} #{item.proteins.total.unit}
-          li
-            dt Total Carbohydrates
-              dd #{item.carbs.total.value} #{item.carbs.total.unit}
+        table
+          tr
+            th(class='name') #{nutrientHeader().name}
+            th
+            th(class='value') #{nutrientHeader().dailyValues}
+          tr 
+            td(class='name') #{item.proteins.total.name}
+            td(class='value') #{item.proteins.total.value} #{item.proteins.total.unit}
+            td 
+          tr
+            td(class='name') Total Carbohydrates
+            td(class='value') #{item.carbs.total.value} #{item.carbs.total.unit}
+            td
           each carb in item.carbs.list
-            li 
-              dt(class='indent') #{carb.name}
-              dd(class='indent') #{carb.value} #{carb.unit}
+            tr 
+              td(class='indent name') #{carb.name}
+              td(class='value') #{carb.value} #{carb.unit}
 
       section(id='fats')
         h3 Fats & Fatty Acids
-        ul
-          li
-            dt Total Fat
-              dd #{item.fats.total.value} #{item.fats.total.unit}
+        table 
+          tr
+            th(class='name') #{nutrientHeader().name}
+            th
+            th(class='value') #{nutrientHeader().dailyValues}
+          tr
+            td(class='name') Total Fat
+            td(class='value') #{item.fats.total.value} #{item.fats.total.unit}
+            td
           each fat in item.fats.list
-            li 
-              dt(class='indent') #{fat.name}
-              dd(class='indent') #{fat.value} #{fat.unit}
+            tr 
+              td(class='indent name') #{fat.name}
+              td(class='value') #{fat.value} #{fat.unit}
 
     div#vitamins
       section(id='vitamins')
-        h3 Vitamins
-        ul
+        h3 Vitamins       
+        table
+          tr
+            th(class='name') #{nutrientHeader().name}
+            th
+            th(class='value') #{nutrientHeader().dailyValues}        
           each vitamin in item.vitamins
-            li 
-              dt #{vitamin.name} 
-              dd #{vitamin.value} #{vitamin.unit}
+            tr 
+              td(class='name') #{vitamin.name} 
+              td(class='value') #{(vitamin.value).toFixed(2)}  #{vitamin.unit} 
+              td #{getDailyValues(vitamin)}
 
     div#minerals
       section(id='minerals')
-        h3 Minerals
-        ul
+        h3 Minerals       
+        table
+          tr
+            th(class='name') #{nutrientHeader().name}
+            th
+            th(class='value') #{nutrientHeader().dailyValues}
           each mineral in item.minerals
-            li 
-              dt #{mineral.name} 
-              dd #{mineral.value} #{mineral.unit}
+            tr 
+              td(class='name') #{mineral.name} 
+              td(class='value') #{mineral.value} #{mineral.unit} 
+              td #{getDailyValues(mineral)}
