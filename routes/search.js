@@ -74,27 +74,7 @@ router.get('/item/:ndbno', function(req, res, next) {
   });
 })
 
-router.get('/nutrient', (req, res, next)=>{
-  console.log('request for nutrient lookup')
-  var nutrientsArr = (Item.vitReferenceArr).concat(Item.minReferenceArr)
-  res.render('nutrientLayout', {
-    nutrients: nutrientsArr,
-  })
-})
 
-router.get('/nutrient/results', (req, res, next)=>{
-  console.log('request for nutrient lookup')
-  var encodedPath = `https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=otG2SftWm3WXimTE3iX2OznAWtnHaCB7spWhwEjo&nutrients=${req.query.nutrient}&sort=c&max=35`
-  request(encodedPath, (error, response, body)=>{
-    var rawData = JSON.parse(body);
-    var itemsArrObj = rawData.report.foods
-    var nutrientName = itemsArrObj[0].nutrients[0].nutrient
-    res.render('nutrientResults', {
-      nutrientName: nutrientName,
-      items: itemsArrObj,
-    })
-  })
-})
 
 
 

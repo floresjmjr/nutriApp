@@ -54,7 +54,7 @@ block viewResults
           each fat in item.fats.list
             tr 
               td(class='indent name') #{fat.name}
-              td(class='value') #{fat.value} #{fat.unit}
+              td(class='value') #{roundValues(fat.value)} #{fat.unit}
 
     div#vitamins
       section(id='vitamins')
@@ -67,7 +67,7 @@ block viewResults
           each vitamin in item.vitamins
             tr 
               td(class='name') #{vitamin.name} 
-              td(class='value') #{(vitamin.value).toFixed(2)}  #{vitamin.unit} 
+              td(class='value') #{roundValues(vitamin.value)}  #{vitamin.unit} 
               td #{getDailyValues(vitamin)}
 
     div#minerals
@@ -81,5 +81,5 @@ block viewResults
           each mineral in item.minerals
             tr 
               td(class='name') #{mineral.name} 
-              td(class='value') #{mineral.value} #{mineral.unit} 
+              td(class='value') #{roundValues(mineral.value)} #{mineral.unit} 
               td #{getDailyValues(mineral)}
