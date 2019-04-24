@@ -23,7 +23,7 @@ router.get('/search/results', function(req, res, next) {
   var encodedQuery = encodeURIComponent(req.query.query);
   var encodedPath = `https://api.nal.usda.gov/ndb/search/?format=json&q=${encodedQuery}&ds=${encodedDB}&sort=n&max=500&offset=0&api_key=otG2SftWm3WXimTE3iX2OznAWtnHaCB7spWhwEjo`
   request(encodedPath, (error, response, body)=>{
-    console.log(JSON.parse(body));
+    // console.log(JSON.parse(body));
     var rawData = JSON.parse(body);
     if (rawData.errors) {
       res.render('searchResults', {

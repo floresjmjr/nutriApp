@@ -128,6 +128,7 @@ a {
   border: 1px solid darkgrey;
   border-radius: 5px;
   text-align: center;
+  padding-top: 20px;
 }
 
 #displayFood div {
@@ -272,18 +273,4 @@ a {
   background: lightgrey;
 }
 
-/* Breakdown */
-
-#breakdown {
-  position: absolute;
-  left: 0;
-}
-
-#breakdown tr:nth-of-type(even) {
-  background-color: lightcyan;
-}
-
-#breakdown th {
-  background: lightgrey;
-  text-align: center;
-}
+/* Analysis (same as breakdown(displayFood))*/

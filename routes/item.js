@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
 var request = require('request');
 var Item = require(path.resolve(path.dirname(__dirname), './modules/item.js'))
-var Log = require(path.resolve(path.dirname(__dirname), './modules/log.js'))
+var Database = require(path.resolve(path.dirname(__dirname), './modules/database.js'))
 
 
 var recentItem = {};
@@ -20,6 +20,7 @@ router.get('/item/:ndbno', function(req, res, next) {
     recentItem = Item.createItemObj(rawData.report.food, ndbnoId)
     console.log('itemName', recentItem.name);
     res.render('breakdown', {
+      addFood: true,
       item: recentItem,
     });
   });
@@ -29,7 +30,7 @@ router.get('/item/:ndbno', function(req, res, next) {
 router.post('/item/:ndbno', (req, res, next)=>{
   console.log('add item', req.body.qty);
   recentItem['qty'] = req.body.qty;
-  Log.insertEntry(recentItem).then((rObj)=>{
+  Database.insertEntry(recentItem).then((rObj)=>{
     // console.log('returned object :', rObj);
     // Needs a more appropriate way to valid that an entry was made
     if(rObj){
@@ -46,6 +47,7 @@ router.get('/serving', (req, res, next)=>{
   console.log('GET serving', req.query)
   recentItem = Item.updateItem(recentItem, req.query.serving)
   res.render('breakdown', {
+    addFood: true,
     item: recentItem,
   });
 })

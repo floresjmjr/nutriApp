@@ -30,7 +30,7 @@ module.exports = {
 
   vitReferenceArr: GenFunc.vitReferenceArr,
   minReferenceArr: GenFunc.minReferenceArr,
-  components: ['vitamins', 'minerals', 'fats', 'carbs', 'proteins', 'calories'],
+  components: GenFunc.components,
 
   createItemObj: function(rawObj, ndbno) {
     var newItemObj = {};

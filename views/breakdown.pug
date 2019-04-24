@@ -2,21 +2,22 @@ extends searchLayout
 
 block content
   article#displayFood
-    header
-      h3 #{item.name}
-      ul#servingQuantity 
-        li 
-          label(for='serving') Quantity:
-        li 
-          input(type='number' name='serving' value='1')
-        li 
-          form(method='GET' action=`/serving`)
-            select(name='serving')
-              option(name=item.ndbno) #{item.serving.qty} #{item.serving.label} (#{item.serving.eqv}#{item.serving.eunit})
-              each m in item.measurements
-                option(name=item.ndbno value=`${m.qty}? ${m.label}? ${m.eqv}? ${m.eunit}`) #{m.qty} #{m.label} (#{m.eqv}#{m.eunit})
-        li
-          button(name='addToLog' value=item.ndbno) Add Item
+    if(addFood)
+      header
+        h3 #{item.name}
+        ul#servingQuantity 
+          li 
+            label(for='serving') Quantity:
+          li 
+            input(type='number' name='serving' value='1')
+          li 
+            form(method='GET' action=`/serving`)
+              select(name='serving')
+                option(name=item.ndbno) #{item.serving.qty} #{item.serving.label} (#{item.serving.eqv}#{item.serving.eunit})
+                each m in item.measurements
+                  option(name=item.ndbno value=`${m.qty}? ${m.label}? ${m.eqv}? ${m.eunit}`) #{m.qty} #{m.label} (#{m.eqv}#{m.eunit})
+          li
+            button(name='addToLog' value=item.ndbno) Add Item
     div#overview
       section(id='calories')
         h3 Calorie Information
@@ -52,11 +53,11 @@ block content
           each protein in item.proteins
             tr 
               td(class='indent name') #{protein.name}
-              td(class='value') #{protein.value} #{protein.unit}          
+              td(class='value') #{roundValues(protein.value)} #{protein.unit}          
           each carb in item.carbs
             tr 
               td(class='indent name') #{carb.name}
-              td(class='value') #{carb.value} #{carb.unit}
+              td(class='value') #{roundValues(carb.value)} #{carb.unit}
 
 
       section(id='fats')

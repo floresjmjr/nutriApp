@@ -94,16 +94,16 @@ module.exports = {
     })
   },
 
-  capitalizeNames: function(arr) {
+  capitalizeNames: function(foodList) {
     console.log('capitalizeNames')
-    return arr.map((groupObj)=>{
-      var nameArr = groupObj.name.split(' ');
+    return foodList.map((foodItem)=>{
+      foodItem.name = foodItem.name.toLowerCase()
+      var nameArr = foodItem.name.split(' ');
       var formattedNameArr = nameArr.map((string)=>{
-        var lStr = string.toLowerCase()
-        return lStr[0].toUpperCase() + lStr.substring(1);         
+        return string.substring(0,1).toUpperCase() + string.substring(1);         
       })
-      groupObj.name = formattedNameArr.join(' ');
-      return groupObj
+      foodItem.name = formattedNameArr.join(' ');
+      return foodItem
     })
   },
 
@@ -133,11 +133,18 @@ module.exports = {
   getItemsByCatId: function(catId) {
     console.log('getItemsByCatId');
     var categoryObj = this.searchById(catId);
+    console.log('categoryObj', categoryObj);
     categoryObj.items = this.capitalizeNames(categoryObj.items)
     if (this.ds === 'LI') {
       categoryObj.items = this.cleanNames(categoryObj.items)      
     }
+    categoryObj = this.maxResults(categoryObj)
     return categoryObj;
+  },
+
+  maxResults(categoryObj) {
+    categoryObj.items = categoryObj.items.slice(0,100)
+    return categoryObj
   },
 
   searchById: function(catId) {

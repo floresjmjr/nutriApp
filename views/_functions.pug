@@ -65,21 +65,16 @@
     return {name: 'Amount/Serving', dailyValues: '%DV'}
   }
 
-  function roundValues(num) {
+  function roundValues(num, nodecimals=false) {
+    if(nodecimals) {
+      return Math.floor(num)
+    }
     if(typeof(num) === 'number'){
       return (num).toFixed(2);
-    } else {
-      return num;
     }
+    return num;
   }
 
-  function total(entries, group) {
-    var total = 0;
-    entries.forEach((item)=>{
-      total += item[group][0].value
-    })
-    return roundValues(total);
-  }
 
   //- function calculateCal(item, group) {
   //-   if (group === 'fats') {
