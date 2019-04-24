@@ -1,8 +1,22 @@
 extends searchLayout
 
-block viewResults
+block content
   article#displayFood
-    h3= item.name
+    header
+      h3 #{item.name}
+      ul#servingQuantity 
+        li 
+          label(for='serving') Quantity:
+        li 
+          input(type='number' name='serving' value='1')
+        li 
+          form(method='GET' action=`/serving`)
+            select(name='serving')
+              option(name=item.ndbno) #{item.serving.qty} #{item.serving.label} (#{item.serving.eqv}#{item.serving.eunit})
+              each m in item.measurements
+                option(name=item.ndbno value=`${m.qty}? ${m.label}? ${m.eqv}? ${m.eunit}`) #{m.qty} #{m.label} (#{m.eqv}#{m.eunit})
+        li
+          button(name='addToLog' value=item.ndbno) Add Item
     div#overview
       section(id='calories')
         h3 Calorie Information
@@ -13,12 +27,20 @@ block viewResults
             th(class='value') #{nutrientHeader().dailyValues}
           tr
             td(class='name') Total Calories 
-            td(class='value') #{item.calories.total.value} #{item.calories.total.unit}
-            td 
-          each macro in item.calories.list
-            tr 
-              td(class='indent name') #{macro.name}
-              td(class='value') #{macro.value} #{macro.unit}
+            td(class='value') #{item.calories[0].value} #{item.calories[0].unit}
+            td
+          //- tr
+          //-   td(class='name') Carbohydrate
+          //-   td(class='value') #{calculateCal(item, 'carbs')} #{item.calories[0].unit}
+          //-   td
+          //- tr
+          //-   td(class='name') Protein 
+          //-   td(class='value') #{calculateCal(item, 'proteins')} #{item.calories[0].unit}
+          //-   td             
+          //- tr
+          //-   td(class='name') Fat 
+          //-   td(class='value') #{calculateCal(item, 'fats')} #{item.calories[0].unit}
+          //-   td             
 
       section(id='proteinCarbs')
         h3 Protein and Carbohydrates
@@ -27,18 +49,15 @@ block viewResults
             th(class='name') #{nutrientHeader().name}
             th
             th(class='value') #{nutrientHeader().dailyValues}
-          tr 
-            td(class='name') #{item.proteins.total.name}
-            td(class='value') #{item.proteins.total.value} #{item.proteins.total.unit}
-            td 
-          tr
-            td(class='name') Total Carbohydrates
-            td(class='value') #{item.carbs.total.value} #{item.carbs.total.unit}
-            td
-          each carb in item.carbs.list
+          each protein in item.proteins
+            tr 
+              td(class='indent name') #{protein.name}
+              td(class='value') #{protein.value} #{protein.unit}          
+          each carb in item.carbs
             tr 
               td(class='indent name') #{carb.name}
               td(class='value') #{carb.value} #{carb.unit}
+
 
       section(id='fats')
         h3 Fats & Fatty Acids
@@ -47,14 +66,11 @@ block viewResults
             th(class='name') #{nutrientHeader().name}
             th
             th(class='value') #{nutrientHeader().dailyValues}
-          tr
-            td(class='name') Total Fat
-            td(class='value') #{item.fats.total.value} #{item.fats.total.unit}
-            td
-          each fat in item.fats.list
+          each fat in item.fats
             tr 
               td(class='indent name') #{fat.name}
               td(class='value') #{roundValues(fat.value)} #{fat.unit}
+
 
     div#vitamins
       section(id='vitamins')
@@ -67,8 +83,12 @@ block viewResults
           each vitamin in item.vitamins
             tr 
               td(class='name') #{vitamin.name} 
-              td(class='value') #{roundValues(vitamin.value)}  #{vitamin.unit} 
-              td #{getDailyValues(vitamin)}
+              if(vitamin.unit)
+                td(class='value') #{roundValues(vitamin.value)}  #{vitamin.unit} 
+                td #{getDailyValues(vitamin)}
+              else
+                td(class='value') unk
+                td ~
 
     div#minerals
       section(id='minerals')

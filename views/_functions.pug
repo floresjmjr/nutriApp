@@ -4,7 +4,6 @@
     switch (Number(nutrient.nutrient_id)) {
       case 421:
         return calculateDV(nutrient.value, 550);
-        break;
       case 417:
         return calculateDV(nutrient.value, 400);
       case 406:
@@ -47,13 +46,19 @@
         return calculateDV(nutrient.value, 55);
       case 309:
         return calculateDV(nutrient.value, 11);
+      case 307:
+        return calculateDV(nutrient.value, 2400);
       default: 
         return '~';
     }
   }
 
   function calculateDV(value, total) {
-    return String(((value / total)*100).toFixed()) + '%'
+    if(typeof(Number(value)) === 'number' && (!isNaN(Number(value)))) {
+      return String(((value / total)*100).toFixed()) + '%'
+    } else {
+      return '~';
+    }
   }
 
   function nutrientHeader() {
@@ -61,8 +66,27 @@
   }
 
   function roundValues(num) {
-    return (num).toFixed(2);
+    if(typeof(num) === 'number'){
+      return (num).toFixed(2);
+    } else {
+      return num;
+    }
   }
 
+  function total(entries, group) {
+    var total = 0;
+    entries.forEach((item)=>{
+      total += item[group][0].value
+    })
+    return roundValues(total);
+  }
+
+  //- function calculateCal(item, group) {
+  //-   if (group === 'fats') {
+  //-     return 9 * item[group][0].value
+  //-   } else {
+  //-     return 4 * item[group][0].value
+  //-   }
+  //- }
 
 

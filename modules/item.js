@@ -24,18 +24,21 @@
 //        derivation: 'AS',
 //        measures: [Array] },....
 
-
+var GenFunc = require('./_community');
 
 module.exports = {
 
-  vitReferenceArr: [{id: 401, name: 'Vitamin C'}, {id: 404, name: 'Thiamin'}, {id: 405, name: 'Riboflavin'}, {id: 406, name: 'Niacin'}, {id: 410, name: 'Pantothenic acid'}, {id: 415, name: 'Vitamin B-6'}, {id: 417, name: 'Folate'}, {id: 421, name: 'Choline'}, {id: 454, name: 'Betaine'} , {id: 320, name: 'Vitamin A'}, {id: 323, name: 'Vitamin E'}, {id: 430, name: 'Vitamin K'}, {id: 328, name: 'Vitamin D'}, {id: 418, name: 'Vitamin B-12'}],
-  minReferenceArr: [{id: 301, name: 'Calcium'}, {id: 303, name: 'Iron'}, {id: 304, name: 'Magnesium'}, {id: 305, name: 'Phosphorus'}, {id: 306, name: 'Potassium'}, {id: 307, name: 'Sodium'}, {id: 309, name: 'Zinc'}, {id: 312, name: 'Copper'}, {id: 315, name: 'Manganese'}, {id: 317, name: 'Selenium'}],
- 
-  createItemObj: function(rawObj) {
-    var newItemObj = {};
-    newItemObj["name"] = rawObj.name
-    newItemObj['unit'] = '100' + rawObj.ru
+  vitReferenceArr: GenFunc.vitReferenceArr,
+  minReferenceArr: GenFunc.minReferenceArr,
+  components: ['vitamins', 'minerals', 'fats', 'carbs', 'proteins', 'calories'],
 
+  createItemObj: function(rawObj, ndbno) {
+    var newItemObj = {};
+    newItemObj['name'] = GenFunc.cleanName(rawObj.name)
+    newItemObj['serving'] = {qty: '', label: '', eqv: '100', eunit: rawObj.ru}
+    newItemObj['measurements'] = this.reCreateMeasurements(rawObj.nutrients[0].measures)
+    newItemObj['ndbno'] = ndbno;
+    //Nutrients
     var partialItemObj = this.groupNutrientTypes(rawObj.nutrients)
     partialItemObj = this.reCreateItemObj(partialItemObj)
     newItemObj['vitamins'] = partialItemObj.vitamins
@@ -44,8 +47,92 @@ module.exports = {
     newItemObj['proteins'] = partialItemObj.proteins
     newItemObj['carbs'] = partialItemObj.carbs
     newItemObj['fats'] = partialItemObj.fats
+    newItemObj['notUpdated'] = true;
     console.log(newItemObj);
     return newItemObj;        
+  },
+
+  updateItem: function(item, newServing) {
+    if(item.notUpdated) {
+      item = this.createDefaultMeasure(item)
+      item.notUpdated = false;
+    }
+    var selectedServingObj = this.formatServing(newServing)
+    this.uniqueServings(item, selectedServingObj)
+    return this.replaceServingValues(item);
+  },
+
+  uniqueServings: function(item, selectedServing) {
+    console.log('uniqueServings', item.serving, selectedServing)
+    //Adds previous serving
+    item.measurements.push(item.serving);
+    var index;
+    item.measurements.forEach((m, idx)=>{
+      if (String(m.eqv) === String(selectedServing.eqv)) {
+        console.log('match')
+        index = idx;
+      }
+    })
+    item.measurements.splice(index, 1);
+    item.serving = selectedServing;
+  },
+
+  formatServing: function(serving) {
+    if (typeof(serving) === 'object') {
+      return serving
+    } else {
+      var splitStr = serving.split('? ')
+      return {qty: splitStr[0], label: splitStr[1], eqv: splitStr[2], eunit: splitStr[3]}
+    }
+  },
+
+  createDefaultMeasure: function(item) {
+    console.log('createDefaultMeasure')
+    this.components.forEach((group)=>{
+      item[group] = this.updateNutrients(item, group)
+    })
+    return item;
+  },
+
+  updateNutrients: function(item, group) {
+    console.log('updateNutrients')
+    return item[group].map((nutrient)=>{
+      if(!nutrient.measures) {
+        nutrient['measures'] = [];
+      }
+      nutrient.measures.unshift({qty: '', label: '', eqv: 100, eunit: 'g', value: nutrient.value})
+      return nutrient;
+    })      //*** value must be number
+  },
+
+  replaceServingValues: function(item) {
+    console.log('replaceServingValues', item.serving)
+    this.components.forEach((group)=>{
+      item[group].forEach((nutrient)=>{
+        if (nutrient.unit){
+          nutrient.value = this.findMeasureValue(nutrient, item.serving.eqv)
+        }
+      })
+    })
+    console.log('after replaced', item.minerals[0].measures);
+    console.log('replaced!', item)
+    return item;
+  },
+
+  findMeasureValue(nutrient, amount) {
+    var value;
+    nutrient.measures.forEach((measurement)=>{
+      if(Number(measurement.eqv) === Number(amount)) {
+        value = measurement.value;
+      }
+    })
+    return value;
+  },
+
+  reCreateMeasurements: function(measurements) {
+    return measurements.map((m)=>{
+      return {label: m.label, eqv: m.eqv, qty: m.qty, eunit: m.eunit}
+    })
   },
 
   groupNutrientTypes: function(rawNutrientsArr) {
@@ -82,15 +169,18 @@ module.exports = {
   },
 
   reCreateItemObj: function(itemObj) {
-    itemObj.calories = this.calculateCalories(itemObj);
-    itemObj.proteins = this.reProteinsObj(itemObj.proteins);
-    itemObj.carbs = this.reCarbsObj(itemObj.carbs);
-    itemObj.fats = this.reFatsObj(itemObj.fats);
 
-    //Vitamins and Minerals
+    //Determine and create vitamin and mineral nutrient objects where the data 
+    //isn't any data available
     itemObj.vitamins = this.setViTMinTemplate(itemObj.vitamins, 'vitamins');
     itemObj.minerals = this.setViTMinTemplate(itemObj.minerals, 'minerals');
-   
+
+    //Remove extra properties from nutrient object
+    this.components.forEach((group)=>{
+      itemObj[group] = this.trimNutrientData(itemObj[group])
+    })
+
+    //Sort out the vitamins and minerals by alphabetic order
     itemObj.vitamins = this.sortNames(itemObj.vitamins);
     itemObj.minerals = this.sortNames(itemObj.minerals);  
     return itemObj;
@@ -130,7 +220,6 @@ module.exports = {
       newNObj.name = this.minReferenceArr[index].name 
     }
     
-    newNObj['value'] = 'unk';
     newNObj['unit'] = '';
     return newNObj;
   },
@@ -146,6 +235,12 @@ module.exports = {
     return nObj;
   },
 
+  trimNutrientData: function(nutrients) {
+    return nutrients.map((n)=>{
+      return {nutrient_id: n.nutrient_id, name: n.name, group: n.group, unit: n.unit, value: n.value, measures: n.measures}
+    })
+  },
+
   sortNames: function(nObjArr) {
     return nObjArr.sort((obj1, obj2)=>{
       if (obj1.name > obj2.name){
@@ -156,63 +251,6 @@ module.exports = {
       }
       return 0;
     })
-  },
-
-  calculateCalories: function(nObjArr) {
-    var newCatObj = {"total": {}, "list": []};
-    newCatObj.total = nObjArr.calories[0]
-    //Calculating the carb calories
-    nObjArr.carbs.forEach((nObj)=>{
-      if(nObj.name === 'Carbohydrate') {
-        var value = (Number(nObj.value) * 4).toFixed(2)
-        var newNObj = {"name": "Carbohydrate", "value": value, "unit": "kcal" }
-        newCatObj.list.push(newNObj)
-      }
-    })
-    //Calculating the carb calories
-    nObjArr.fats.forEach((nObj)=>{
-      if(nObj.name === 'Total lipid (fat)') {
-        var value = (Number(nObj.value) * 9).toFixed(2)
-        var newNObj = {"name": "Fat", "value": value, "unit": "kcal" }
-        newCatObj.list.push(newNObj)
-      }
-    })
-    //Calculating the carb calories
-    var value = (Number(nObjArr.proteins[0].value) * 4).toFixed(2)
-    var newNObj = {"name": "Protein", "value": value, "unit": "kcal" }
-    newCatObj.list.push(newNObj)
-
-    return newCatObj;
-  },
-
-  reProteinsObj: function(nObjArr) {
-    var newCatObj = {};
-    newCatObj.total = {nutrient_id: nObjArr[0].nutrient_id, name: nObjArr[0].name, unit: nObjArr[0].unit, value: nObjArr[0].value}
-    return newCatObj;
-  },
-
-  reCarbsObj: function(nObjArr) {
-    var newCatObj = {'total': {}, 'list': []};
-    nObjArr.forEach((nObj)=>{
-      if(nObj.name === 'Carbohydrate') {
-        newCatObj.total = {nutrient_id: nObj.nutrient_id, name: nObj.name, unit: nObj.unit, value: nObj.value}
-      } else {
-        newCatObj.list.push(nObj)
-      }
-    })
-    return newCatObj;
-  },
-
-  reFatsObj: function(nObjArr) {
-    var newCatObj = {'total': {}, 'list': []};
-    nObjArr.forEach((nObj)=>{
-      if(nObj.name === 'Total lipid (fat)') {
-        newCatObj.total = {nutrient_id: nObj.nutrient_id, name: nObj.name, unit: nObj.unit, value: nObj.value}
-      } else {
-        newCatObj.list.push(nObj)
-      }
-    })
-    return newCatObj;    
   },
 
 }

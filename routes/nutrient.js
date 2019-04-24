@@ -9,9 +9,8 @@ const Nutrient = require(path.resolve(path.dirname(__dirname), './modules/nutrie
 // Get Nutrient Search Page
 router.get('/nutrient', (req, res, next)=>{
   console.log('request for nutrient lookup')
-  var nutrientsArr = (Nutrient.vitaminList()).concat(Nutrient.mineralList())
   res.render('nutrientLayout', {
-    nutrients: nutrientsArr,
+    nutrients: Nutrient.createNutrientList(),
   })
 })
 
@@ -21,7 +20,8 @@ router.get('/nutrient/results', (req, res, next)=>{
   var encodedPath = `https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=otG2SftWm3WXimTE3iX2OznAWtnHaCB7spWhwEjo&nutrients=${req.query.nutrient}&sort=c&max=75`
   request(encodedPath, (error, response, body)=>{
     var rawData = JSON.parse(body);
-    var itemsArrObj = Nutrient.filteredResults(rawData.report.foods)
+    // console.log('rawData foods', rawData.report.foods);
+    var itemsArrObj = Nutrient.filterNformat(rawData.report.foods)
     var nutrientName = itemsArrObj[0].nutrients[0].nutrient
     res.render('nutrientResults', {
       nutrientName: nutrientName,

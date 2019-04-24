@@ -6,11 +6,11 @@ block mainDisplay
       i "#{nutrientName}", 100g
     table
       tr
-        th(class='name') Name of Food
-        th(class='value') Value of Nutrient
+        th Name of Food
+        th Value of Nutrient
         th %DV
       each item in items
         tr
-          td #{item.name} 
-          td #{Number(item.nutrients[0].value).toFixed(2)} #{item.nutrients[0].unit}
-          td #{getDailyValues(item.nutrients[0])}
+          td(class='nutrientName') #{item.name} 
+          td(class='nutrientValue') #{Number(item.nutrients[0].value).toFixed(2)} #{item.nutrients[0].unit}
+          td(class='nutrientDV') #{getDailyValues(item.nutrients[0])}

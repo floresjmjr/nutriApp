@@ -1,11 +1,11 @@
 extends searchLayout
 
-block viewResults
+block content
   if error
-    h2 No results for 
+    h2(class='resultsHeader') No results for 
       i "#{searchTerm}".
   else
-    h2#resultsHeader Results for 
+    h2(class='resultsHeader') Results for 
       i "#{searchTerm}".
     ul#results
       each category in categories

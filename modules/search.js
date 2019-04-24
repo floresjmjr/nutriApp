@@ -37,6 +37,7 @@ module.exports = {
   foodDatabase: [],
 
   createCategories: function(rawQueryList) {
+    console.log('createCategories')
     var categoriesObj = this.groupQueryListByCategory(rawQueryList);
     var categoriesObjArr = this.reCreateCategoryList(categoriesObj);
     categoriesObjArr = this.sortGroups(categoriesObjArr);
@@ -48,6 +49,7 @@ module.exports = {
   },
 
   groupQueryListByCategory: function(rawQueryList) {
+    console.log('groupQueryListByCategory')
     return rawQueryList.reduce((acc, obj)=> {
      var prop = this.chooseProp(obj);
      var key = obj[prop];
@@ -73,12 +75,14 @@ module.exports = {
   },
 
   condenseCatData: function(catArr){
+    console.log('condenseCatData')
     return catArr.map((catObj)=> {
       return {'id': catObj.id, 'name': catObj.name, 'count': catObj.items.length}
     })
   },
 
   sortAsc: function(catArr) {
+    console.log('sortAsc')
     return catArr.sort((catObj1, catObj2)=>{
       if (catObj1.name > catObj2.name) {
         return 1;
@@ -91,6 +95,7 @@ module.exports = {
   },
 
   capitalizeNames: function(arr) {
+    console.log('capitalizeNames')
     return arr.map((groupObj)=>{
       var nameArr = groupObj.name.split(' ');
       var formattedNameArr = nameArr.map((string)=>{
@@ -113,6 +118,7 @@ module.exports = {
   },
 
   sortGroups: function(catArr) {
+    console.log('SortGroups')
     return catArr.sort((cat1, cat2)=>{
       if (cat1.items.length > cat2.items.length) {
         return -1
@@ -135,6 +141,7 @@ module.exports = {
   },
 
   searchById: function(catId) {
+    console.log('searchByID')
     return this.foodDatabase.filter((catObj)=>{
       if (String(catObj.id) === catId) {
         return catObj;
@@ -143,6 +150,7 @@ module.exports = {
   },
 
   cleanNames: function(itemsArr){
+    console.log('cleanNames')
     return itemsArr.map((item)=>{
       item.name = item.name.split(', Upc')[0]
       return item;

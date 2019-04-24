@@ -1,0 +1,43 @@
+extends ../searchLayout
+
+block content
+  article#displayLog
+    section#date
+    section#logList
+      h3 Log List
+      table
+        tr
+          th#test Qty
+          th Name/Serving
+          th Calories
+          th Fats
+          th Proteins
+          th Carbs
+        each entry in entries
+          tr
+            td(class='qty') #{entry.qty}
+            td(class='nameServing') 
+              dt(class='logName') #{entry.name}
+              dd #{entry.serving.qty} #{entry.serving.label} (#{entry.serving.eqv} #{entry.serving.eunit})
+            td #{entry.calories[0].value} #{entry.calories[0].unit}
+            td #{entry.fats[0].value} #{entry.fats[0].unit}
+            td #{entry.proteins[0].value} #{entry.proteins[0].unit}
+            td #{entry.carbs[0].value} #{entry.carbs[0].unit}
+            td(class='delete')
+              button(name='deleteFromLog' value=entry._id) Delete
+        tr(class='totals')
+          td
+          td
+          td #{total(entries, 'calories')} kcal
+          td #{total(entries, 'fats')} g
+          td #{total(entries, 'proteins')} g
+          td #{total(entries, 'carbs')} g
+
+
+//- date Information as well
+    //- section#breakfast
+    //-   h3 Breakfast
+    //- section#lunch
+    //-   h3 Lunch
+    //- section#dinner
+    //-   h3 Dinner

@@ -1,14 +1,14 @@
-const Item = require('./item.js')
-
+const GenFunc = require('./_community')
 
 module.exports = {
 
-  vitaminList: function() {
-    return Item.vitReferenceArr
+  createNutrientList: function() {
+    return (GenFunc.vitReferenceArr).concat(GenFunc.minReferenceArr)
   },
 
-  mineralList: function() {
-    return Item.minReferenceArr
+  filterNformat: function(rawArr) {
+    var filteredArr = this.filteredResults(rawArr);
+    return GenFunc.formatNames(filteredArr)
   },
 
   filteredResults: function(rawArr) {
@@ -21,6 +21,6 @@ module.exports = {
         return true;
       }
     }).slice(0, 50)
-  }
+  },
 
 }

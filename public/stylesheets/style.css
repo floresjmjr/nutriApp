@@ -40,13 +40,18 @@ main {
   border-radius: 5px;
 }
 
-#resultsHeader {
+.resultsHeader {
   text-align: center;
 }
 
 nav h2 {
   text-align: center;
   margin: 40px 0;
+}
+
+nav li {
+  margin-bottom: 20px;
+  list-style: none;
 }
 
 #search {
@@ -56,10 +61,15 @@ nav h2 {
   text-align: center;
 }
 
-li {
+main li {
   margin-bottom: 20px;
   list-style: none;
 }
+
+/* .active {
+  background-color: #63659c;
+  color: #fff;
+} */
 
 #search input {
   margin-left: 15px;
@@ -68,6 +78,7 @@ li {
   border: 1px solid darkgrey;
   width: 250px;
   height: 20px;
+  padding-left: 10px;
 }
 
 #search input:focus {
@@ -101,6 +112,12 @@ a {
   font-size: 11px;
 }
 
+#search button  {
+  height: 20px;
+  width: 100px;
+  margin-left: 20px;
+  border-radius: 5px;
+}
 
 
 /* Display Nutritional Information */
@@ -116,7 +133,8 @@ a {
 #displayFood div {
   display: inline-block;
   margin-right: 20px;
-  width: 300px;
+  width: 280px;
+  vertical-align: top;
 }
 
 #displayFood div:last-of-type {
@@ -132,10 +150,18 @@ a {
   box-sizing: border-box;
 }
 
-#displayFood h3 {
+#displayFood header h3, #displayFood button {
+  display: inline-block;
+}
+
+#displayFood header h3 {
+  display: block;
+}
+
+#displayFood header {
   text-align: center;
   color: #2d486c;
-  padding: 5px 0;
+  margin: 20px 0;
 }
 
 #displayFood tr {
@@ -146,7 +172,7 @@ a {
   text-align: left;
 }
 
-#displayFood td, th {
+#displayFood td, #displayFood th {
   width: 50px;
   text-align: right;
 }
@@ -166,6 +192,15 @@ a {
   padding-left: 10px;
 }
 
+#displayFood select {
+  width: 280px;
+}
+
+#displayFood li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
 /* Nutrient Lookup */
 #nutrientTable table {
   padding: 35px 60px;
@@ -175,24 +210,80 @@ a {
 
 }
 
+#nutrientTable .nutrientName {
+  padding-left: 20px;
+}
+
+#nutrientTable .nutrientValue, #nutrientTable .nutrientDV {
+  text-align: center;
+}
+
 #nutrientTable th {
-  text-align: left;
+  text-align: center;
   background: lightgrey;
   height: 45px;
 }
+
 
 #nutrientTable tr:nth-child(odd) {
   background-color: #fff;
 }
 
-#search button  {
-  height: 20px;
-  width: 100px;
-  margin-left: 20px;
-  border-radius: 5px;
-}
-
 #nutrientTable h3 {
   text-align: center;
   padding-top: 20px;
+}
+
+/* Displaying the Log */
+
+
+#displayLog h3 {
+  text-align: center;
+}
+
+#displayLog section {
+  display: block;
+}
+
+#displayLog th {
+  text-align: center;
+  background: lightgrey;
+}
+
+#displayLog td {
+  padding: 0 10px 10px 10px;
+  text-align: center;
+}
+
+#displayLog .nameServing {
+  width: 400px;
+  text-align: left;
+}
+
+#displayLog .logName {
+  font-weight: bold;
+}
+
+#logList dd {
+  margin: 0;
+}
+
+#logList .totals {
+  background: lightgrey;
+}
+
+/* Breakdown */
+
+#breakdown {
+  position: absolute;
+  left: 0;
+}
+
+#breakdown tr:nth-of-type(even) {
+  background-color: lightcyan;
+}
+
+#breakdown th {
+  background: lightgrey;
+  text-align: center;
 }
