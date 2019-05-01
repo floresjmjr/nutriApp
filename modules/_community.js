@@ -1,3 +1,5 @@
+var request = require('request');
+
 
 module.exports = {
   
@@ -15,15 +17,24 @@ module.exports = {
     var splitName = name.split(' ')
     return splitName.map((str)=>{
       var lname = str.toLowerCase()
-      return lname[0].toUpperCase() + lname.substring(1)
+      return lname.substring(0,1).toUpperCase() + lname.substring(1)
     }).join(' ')
   },
 
   formatNames: function(foodArr) {
-    console.log('nameArray', foodArr);
+    console.log('nameArray123', foodArr.slice(0,5));
     return foodArr.map((food)=>{
       food.name = this.capitalizeName(food.name);
       return food;
+    })
+  },
+
+  usdaRequest: function(url){
+    return new Promise((resolve, reject)=>{
+      request(url, (error, response, body)=>{
+        resolve(JSON.parse(body))
+        reject(error);
+      })
     })
   },
 

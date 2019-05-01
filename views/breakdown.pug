@@ -7,29 +7,29 @@ block content
         h3 #{item.name}
         ul#servingQuantity 
           li 
-            label(for='serving') Quantity:
+            label(for='quantity') Quantity:
           li 
-            input(type='number' name='serving' value='1')
+            input(type='number' id='quantity' value='1')
           li 
             form(method='GET' action=`/serving`)
               select(name='serving')
-                option(name=item.ndbno) #{item.serving.qty} #{item.serving.label} (#{item.serving.eqv}#{item.serving.eunit})
+                option #{item.serving.qty} #{item.serving.label} (#{item.serving.eqv}#{item.serving.eunit})
                 each m in item.measurements
-                  option(name=item.ndbno value=`${m.qty}? ${m.label}? ${m.eqv}? ${m.eunit}`) #{m.qty} #{m.label} (#{m.eqv}#{m.eunit})
+                  option(value=`${m.qty}? ${m.label}? ${m.eqv}? ${m.eunit}`) #{m.qty} #{m.label} (#{m.eqv}#{m.eunit})
           li
             button(name='addToLog' value=item.ndbno) Add Item
+    if(totals)
+        h3 Your Nutrition Overview
     div#overview
       section(id='calories')
         h3 Calorie Information
         table
           tr
             th(class='name') #{nutrientHeader().name}
-            th
-            th(class='value') #{nutrientHeader().dailyValues}
+            th= ''
           tr
             td(class='name') Total Calories 
             td(class='value') #{item.calories[0].value} #{item.calories[0].unit}
-            td
           //- tr
           //-   td(class='name') Carbohydrate
           //-   td(class='value') #{calculateCal(item, 'carbs')} #{item.calories[0].unit}
@@ -48,8 +48,7 @@ block content
         table
           tr
             th(class='name') #{nutrientHeader().name}
-            th
-            th(class='value') #{nutrientHeader().dailyValues}
+            th= ''
           each protein in item.proteins
             tr 
               td(class='indent name') #{protein.name}
@@ -65,8 +64,7 @@ block content
         table 
           tr
             th(class='name') #{nutrientHeader().name}
-            th
-            th(class='value') #{nutrientHeader().dailyValues}
+            th= ''
           each fat in item.fats
             tr 
               td(class='indent name') #{fat.name}
@@ -74,7 +72,7 @@ block content
 
 
     div#vitamins
-      section(id='vitamins')
+      section
         h3 Vitamins       
         table
           tr
@@ -92,7 +90,7 @@ block content
                 td ~
 
     div#minerals
-      section(id='minerals')
+      section
         h3 Minerals       
         table
           tr

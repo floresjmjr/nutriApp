@@ -7,6 +7,7 @@ module.exports = {
   },
 
   filterNformat: function(rawArr) {
+    console.log('filterNformat')
     var filteredArr = this.filteredResults(rawArr);
     return GenFunc.formatNames(filteredArr)
   },
@@ -20,7 +21,23 @@ module.exports = {
       } else {
         return true;
       }
-    }).slice(0, 50)
+    })
+  },
+
+  getFoodListByNutrient: function(nutrient) {
+    var encodedPath = `https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=otG2SftWm3WXimTE3iX2OznAWtnHaCB7spWhwEjo&nutrients=${nutrient}&sort=c&max=200`
+    return GenFunc.usdaRequest(encodedPath)
+  }, 
+
+  findNameById: function(nutrientId) {
+    var name = '';
+    const arr = this.createNutrientList()
+    arr.forEach((nutrient)=>{
+      if(nutrient.id === Number(nutrientId)){
+        name = nutrient.name;
+      }
+    })
+    return name;
   },
 
 }

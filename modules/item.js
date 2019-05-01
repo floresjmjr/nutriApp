@@ -31,6 +31,7 @@ module.exports = {
   vitReferenceArr: GenFunc.vitReferenceArr,
   minReferenceArr: GenFunc.minReferenceArr,
   components: GenFunc.components,
+  recentItem: {},
 
   createItemObj: function(rawObj, ndbno) {
     var newItemObj = {};
@@ -49,17 +50,22 @@ module.exports = {
     newItemObj['fats'] = partialItemObj.fats
     newItemObj['notUpdated'] = true;
     console.log(newItemObj);
+    this.recentItem = newItemObj;
     return newItemObj;        
   },
 
-  updateItem: function(item, newServing) {
+  updateItem: function(newServing) {
+    console.log('updateItem', this.recentItem)
+    var item = this.recentItem
     if(item.notUpdated) {
       item = this.createDefaultMeasure(item)
       item.notUpdated = false;
     }
     var selectedServingObj = this.formatServing(newServing)
     this.uniqueServings(item, selectedServingObj)
-    return this.replaceServingValues(item);
+    item = this.replaceServingValues(item);
+    this.recentItem = item;
+    return this.recentItem;
   },
 
   uniqueServings: function(item, selectedServing) {
@@ -228,7 +234,7 @@ module.exports = {
   parseNutritentData: function(nObj) {
     if (nObj.group === 'Lipids') {
       var name = nObj.name.split(' ')[3];
-      nObj.name = name[0].toUpperCase() + name.substring(1) + ' Fat';
+      nObj.name = name.substring(0,1).toUpperCase() + name.substring(1) + ' Fat';
     } else {
       nObj.name = nObj.name.split(',')[0];
     }
@@ -251,6 +257,11 @@ module.exports = {
       }
       return 0;
     })
+  },
+
+  getDetailsByNdbno: function(ndbnoId){
+    var encodedPath = `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbnoId}&type=f&format=json&api_key=otG2SftWm3WXimTE3iX2OznAWtnHaCB7spWhwEjo`
+    return GenFunc.usdaRequest(encodedPath)
   },
 
 }

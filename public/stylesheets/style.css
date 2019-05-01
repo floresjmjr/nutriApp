@@ -7,37 +7,16 @@ nav {
   display: block;
   width: 200px;
   background:  #c9d7e8;
-  height: 100vh;
+  height: 100%;
   border-radius: 5px;
-}
-
-#tabs {
-  display: block;
-  margin-left: 210px;
-}
-
-#tabs ul {
-  background: #fff;
-  padding: 0;
-  text-align: left;
-  margin: 0;
-}
-
-#tabs li {
-  display: inline-block;
-  background: #edf2f7;
-  width: 150px;
-  margin: 0;
-  text-align: center;
-  border-right: 5px solid #fff;
 }
 
 main {
   display: block;
   margin-left: 210px;
   background: #edf2f7;
-  height: 100vh;
   border-radius: 5px;
+  height: 100vh;
 }
 
 .resultsHeader {
@@ -104,8 +83,9 @@ form h2 {
 }
 
 a {
-  color: #2d486c;
+  color: #000;
   text-decoration: none;
+  cursor: pointer;
 }
 
 #listOfGroup li {
@@ -128,7 +108,6 @@ a {
   border: 1px solid darkgrey;
   border-radius: 5px;
   text-align: center;
-  padding-top: 20px;
 }
 
 #displayFood div {
@@ -151,12 +130,19 @@ a {
   box-sizing: border-box;
 }
 
-#displayFood header h3, #displayFood button {
+#displayFood button {
   display: inline-block;
 }
 
+/* Item heading */
 #displayFood header h3 {
   display: block;
+  padding: 0;
+}
+
+/* Analysis heading */
+#displayFood h3 {
+  padding: 20px 0;
 }
 
 #displayFood header {
@@ -171,6 +157,7 @@ a {
   color: #2d486c;
   border-bottom: 1px solid grey;
   text-align: left;
+  width: 245px;
 }
 
 #displayFood td, #displayFood th {
@@ -202,27 +189,59 @@ a {
   margin-right: 5px;
 }
 
-/* Nutrient Lookup */
-#nutrientTable table {
-  padding: 35px 60px;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+#overview .value {
+  padding-left: 50px;
+}
 
+/* Nutrient Lookup */
+
+#nutrientTable table{
+  margin: auto;
+  width: 750px;
+  border-collapse: collapse;
+}
+
+#nutrientTable thead, #nutrientTable tbody {
+  display: block;
+}
+
+#nutrientTable tbody {
+  height: 700px;
+  overflow: auto;
 }
 
 #nutrientTable .nutrientName {
-  padding-left: 20px;
+  width: 55%;
 }
 
-#nutrientTable .nutrientValue, #nutrientTable .nutrientDV {
+#nutrientTable td.nutrientName {
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.nutrientServing {
   text-align: center;
+  width: 15%;
+  padding: 10px 0 10px 30px;
+}
+
+.nutrientValue {
+  text-align: center;
+  width: 15%;
+  padding: 10px 0 10px 30px;
+}
+
+.nutrientDV {
+  text-align: center;
+  width: 15%;
+  padding: 10px 0 10px 30px;
 }
 
 #nutrientTable th {
   text-align: center;
   background: lightgrey;
   height: 45px;
+  padding: 0;
 }
 
 
@@ -230,9 +249,13 @@ a {
   background-color: #fff;
 }
 
+#nutrientTable tr:nth-child(even) {
+  background-color: #c9d7e8
+}
+
 #nutrientTable h3 {
   text-align: center;
-  padding-top: 20px;
+  padding: 30px 0 10px 0;
 }
 
 /* Displaying the Log */
@@ -246,31 +269,58 @@ a {
   display: block;
 }
 
+#displayLog table {
+  margin: auto;
+}
+
 #displayLog th {
   text-align: center;
   background: lightgrey;
 }
 
 #displayLog td {
-  padding: 0 10px 10px 10px;
+  padding: 10px;
   text-align: center;
 }
 
 #displayLog .nameServing {
   width: 400px;
   text-align: left;
-}
-
-#displayLog .logName {
   font-weight: bold;
 }
 
-#logList dd {
+#displayLog dd {
   margin: 0;
 }
 
-#logList .totals {
+#displayLog .totals {
   background: lightgrey;
 }
 
+#displayLog tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+#displayLog tr:nth-child(even) {
+  background-color: #c9d7e8
+}
+
+.nameServing p {
+  margin: 0;
+}
+
 /* Analysis (same as breakdown(displayFood))*/
+
+/* Responsive Layout Settings */
+
+/* @media all and (max-width: 840px) {
+
+  nav {
+    display: none;
+  }
+
+  main {
+    margin-left: 0;
+  }
+
+} */

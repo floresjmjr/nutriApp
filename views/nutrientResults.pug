@@ -5,12 +5,17 @@ block mainDisplay
     h3 Results for 
       i "#{nutrientName}", 100g
     table
-      tr
-        th Name of Food
-        th Value of Nutrient
-        th %DV
-      each item in items
+      thead
         tr
-          td(class='nutrientName') #{item.name} 
-          td(class='nutrientValue') #{Number(item.nutrients[0].value).toFixed(2)} #{item.nutrients[0].unit}
-          td(class='nutrientDV') #{getDailyValues(item.nutrients[0])}
+          th(class='nutrientName') Name
+          th(class='serving') Serving
+          th(class='nutrientValue') Value of Nutrient
+          th(class='nutrientDV') %DV
+      tbody    
+        each item in items
+          tr
+            td(class='nutrientName') 
+              a(href='/item/' + item.ndbno) #{item.name}
+            td(class='nutrientServing') #{item.measure} 
+            td(class='nutrientValue') #{Math.floor(item.nutrients[0].value)} #{item.nutrients[0].unit}
+            td(class='nutrientDV') #{getDailyValues(item.nutrients[0])}

@@ -2,12 +2,12 @@ extends searchLayout
 
 block content
   h3= category.name
-    ul(id='listOfGroup') 
-      if category.items 
-        each item in category.items
-          li
-            a(href='/item/' + item.ndbno) #{item.name}
-      else
-        h5 The item you searched could not be found.
+  ul(id='listOfGroup') 
+    if category.items 
+      each item in category.items
+        li
+          a(href='/item/' + item.ndbno) #{item.name}
+    else
+      h5 The item you searched could not be found.
 
 

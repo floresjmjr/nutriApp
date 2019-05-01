@@ -31,10 +31,32 @@
 //        manu: 'none' } ] }
 // }
 
+const GenFunc = require('./_community')
 
 module.exports = {
   
   foodDatabase: [],
+
+  capitalizeNames: function(foodList) {
+    console.log('capitalizeNames')
+    return foodList.map((foodItem)=>{
+      foodItem.name = foodItem.name.toLowerCase()
+      var nameArr = foodItem.name.split(' ');
+      var formattedNameArr = nameArr.map((string)=>{
+        return string.substring(0,1).toUpperCase() + string.substring(1);         
+      })
+      foodItem.name = formattedNameArr.join(' ');
+      return foodItem
+    })
+  },
+
+  cleanNames: function(itemsArr){
+    console.log('cleanNames')
+    return itemsArr.map((item)=>{
+      item.name = item.name.split(', Upc')[0]
+      return item;
+    })
+  },
 
   createCategories: function(rawQueryList) {
     console.log('createCategories')
@@ -94,18 +116,7 @@ module.exports = {
     })
   },
 
-  capitalizeNames: function(foodList) {
-    console.log('capitalizeNames')
-    return foodList.map((foodItem)=>{
-      foodItem.name = foodItem.name.toLowerCase()
-      var nameArr = foodItem.name.split(' ');
-      var formattedNameArr = nameArr.map((string)=>{
-        return string.substring(0,1).toUpperCase() + string.substring(1);         
-      })
-      foodItem.name = formattedNameArr.join(' ');
-      return foodItem
-    })
-  },
+
 
   chooseProp: function(rawObj) {
     if(rawObj.ds === 'SR'){
@@ -156,13 +167,11 @@ module.exports = {
     })[0]
   },
 
-  cleanNames: function(itemsArr){
-    console.log('cleanNames')
-    return itemsArr.map((item)=>{
-      item.name = item.name.split(', Upc')[0]
-      return item;
-    })
+  getCategories: function(db, query) {
+    var encodedDB = db === 'SR' ? 'Standard%20Reference' : 'Branded%20Food%20Products'
+    var encodedQuery = encodeURIComponent(query);
+    var encodedPath = `https://api.nal.usda.gov/ndb/search/?format=json&q=${encodedQuery}&ds=${encodedDB}&sort=n&max=500&offset=0&api_key=otG2SftWm3WXimTE3iX2OznAWtnHaCB7spWhwEjo`
+    return GenFunc.usdaRequest(encodedPath);
   }
-
 
 }
