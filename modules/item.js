@@ -260,7 +260,9 @@ module.exports = {
   },
 
   getDetailsByNdbno: function(ndbnoId){
-    var encodedPath = `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbnoId}&type=f&format=json&api_key=otG2SftWm3WXimTE3iX2OznAWtnHaCB7spWhwEjo`
+    console.log('before apiKey')
+    var apiKey = GenFunc.usdaApiKey();
+    var encodedPath = `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbnoId}&type=f&format=json&api_key=${apiKey}`
     return GenFunc.usdaRequest(encodedPath)
   },
 

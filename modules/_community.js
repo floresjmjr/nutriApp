@@ -1,5 +1,5 @@
-var request = require('request');
-
+const request = require('request');
+const Password = require('../passwords/api')
 
 module.exports = {
   
@@ -36,6 +36,10 @@ module.exports = {
         reject(error);
       })
     })
+  },
+
+  usdaApiKey: function(){
+    return Password.usda
   },
 
 }

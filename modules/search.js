@@ -31,7 +31,7 @@
 //        manu: 'none' } ] }
 // }
 
-const GenFunc = require('./_community')
+const GenFunc = require('./_community');
 
 module.exports = {
   
@@ -168,9 +168,11 @@ module.exports = {
   },
 
   getCategories: function(db, query) {
+    console.log('before apikey')
+    var apiKey = GenFunc.usdaApiKey();
     var encodedDB = db === 'SR' ? 'Standard%20Reference' : 'Branded%20Food%20Products'
     var encodedQuery = encodeURIComponent(query);
-    var encodedPath = `https://api.nal.usda.gov/ndb/search/?format=json&q=${encodedQuery}&ds=${encodedDB}&sort=n&max=500&offset=0&api_key=otG2SftWm3WXimTE3iX2OznAWtnHaCB7spWhwEjo`
+    var encodedPath = `https://api.nal.usda.gov/ndb/search/?format=json&q=${encodedQuery}&ds=${encodedDB}&sort=n&max=500&offset=0&api_key=${apiKey}`
     return GenFunc.usdaRequest(encodedPath);
   }
 

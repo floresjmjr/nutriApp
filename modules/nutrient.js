@@ -25,7 +25,8 @@ module.exports = {
   },
 
   getFoodListByNutrient: function(nutrient) {
-    var encodedPath = `https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=otG2SftWm3WXimTE3iX2OznAWtnHaCB7spWhwEjo&nutrients=${nutrient}&sort=c&max=200`
+    var apiKey = GenFunc.usdaApiKey();
+    var encodedPath = `https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=${apiKey}&nutrients=${nutrient}&sort=c&max=200`
     return GenFunc.usdaRequest(encodedPath)
   }, 
 
