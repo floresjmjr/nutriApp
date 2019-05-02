@@ -12,8 +12,24 @@ function connect() {
   MongoClient.connect(process.env.DATABASE_PASS, mOptions, (err, client)=>{
     if (err) { console.error('An error occurred connecting to database: ', err)
     } else {
-      console.log('Connected successfully to server')
-      db = client.db(dbName)
+      
+      async function runTransactionWithRetry(txnFunc, client, session) {
+        try {
+          await txnFunc(client, session);
+          console.log('Connected successfully to server')
+          db = client.db(dbName)
+        } catch (error) {
+          console.log('Transaction aborted. Caught exception during transaction.');
+      
+          // If transient error, retry the whole transaction
+          if (error.errorLabels && error.errorLabels.indexOf('TransientTransactionError') >= 0) {
+            console.log('TransientTransactionError, retrying transaction ...');
+            await runTransactionWithRetry(txnFunc, client, session);
+          } else {
+            throw error;
+          }
+        }
+      }
     }
   })
 }
