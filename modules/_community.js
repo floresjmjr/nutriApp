@@ -1,5 +1,5 @@
 const request = require('request');
-const Password = require('../passwords/api')
+// const Password = require('../passwords/api')
 
 module.exports = {
   
