@@ -7,6 +7,10 @@ module.exports = {
   minReferenceArr: [{id: 301, name: 'Calcium'}, {id: 303, name: 'Iron'}, {id: 304, name: 'Magnesium'}, {id: 305, name: 'Phosphorus'}, {id: 306, name: 'Potassium'}, {id: 307, name: 'Sodium'}, {id: 309, name: 'Zinc'}, {id: 312, name: 'Copper'}, {id: 315, name: 'Manganese'}, {id: 317, name: 'Selenium'}],
   components: ['vitamins', 'minerals', 'fats', 'carbs', 'proteins', 'calories'],
 
+  usdaApiKey: function(){
+    return Password.usda
+  },
+
   cleanName: function(name){
     console.log('cleanName')
     var result = name.split(', UPC')[0];
@@ -38,8 +42,6 @@ module.exports = {
     })
   },
 
-  usdaApiKey: function(){
-    return Password.usda
-  },
+
 
 }

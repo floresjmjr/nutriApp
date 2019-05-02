@@ -20,7 +20,7 @@ $(function() {
         var data = {};
         data['qty'] = $(e.target).closest('ul').find('input').val()
         const request = new XMLHttpRequest();
-        request.open('POST', `http://localhost:3000/item/${id}`)
+        request.open('POST', `http://localhost:8000/item/${id}`)
         request.setRequestHeader('Content-type', 'application/json')
         request.send(JSON.stringify(data))
         request.addEventListener('load', (response)=>{
@@ -38,7 +38,7 @@ $(function() {
         const id = $(e.target).val();
         console.log('deleteFood triggered', id)
         const request = new XMLHttpRequest();
-        request.open('DELETE', `http://localhost:3000/log/${id}`)
+        request.open('DELETE', `http://localhost:8000/log/${id}`)
         request.send();
         request.addEventListener('load', ()=>{
           if(request.status === 200) {
