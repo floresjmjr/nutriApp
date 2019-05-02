@@ -8,7 +8,7 @@ module.exports = {
   components: ['vitamins', 'minerals', 'fats', 'carbs', 'proteins', 'calories'],
 
   usdaApiKey: function(){
-    return Password.usda
+    return process.env.USDA_APIKEY;
   },
 
   cleanName: function(name){
