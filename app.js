@@ -7,7 +7,7 @@ var app = express();
 const DB = require('./config/database');
 
 //Database
-DB.connect();
+// DB.connect();
 
 //Router
 var searchRouter = require('./routes/search');
