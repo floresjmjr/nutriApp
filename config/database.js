@@ -4,7 +4,7 @@
 const MongoClient = require('mongodb').MongoClient;
 // const password = Password.database
 // const url = `mongodb+srv://floresjmjr:${password}@cluster0-iw5gt.mongodb.net/test?retryWrites=true`;
-const url = process.env.DATABASE_PASS
+const url = 'mongodb+srv://floresjmjr:LifeSpan18@cluster0-iw5gt.mongodb.net/test?retryWrites=true'
 const mOptions = {useNewUrlParser: true}
 const dbName = 'test';
 
