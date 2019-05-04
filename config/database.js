@@ -1,10 +1,9 @@
-// const Password = require('../passwords/database')
+const Password = require('../passwords/database')
 
 // Database
 const MongoClient = require('mongodb').MongoClient;
-// const password = Password.database
-// const url = `mongodb+srv://floresjmjr:${password}@cluster0-iw5gt.mongodb.net/test?retryWrites=true`;
-const url = 'mongodb+srv://floresjmjr:LifeSpan18@cluster0-iw5gt.mongodb.net/test?retryWrites=true'
+const password = Password.database
+const url = `mongodb+srv://floresjmjr:${password}@cluster0-iw5gt.mongodb.net/test?retryWrites=true`;
 const mOptions = {useNewUrlParser: true}
 const dbName = 'test';
 
