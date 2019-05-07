@@ -88,8 +88,24 @@ a {
   cursor: pointer;
 }
 
+button {
+  cursor: pointer;
+}
+
 #listOfGroup li {
   font-size: 11px;
+}
+
+#listOfGroup {
+  overflow: auto;
+  height: 600px;
+  width: 600px;
+  margin: auto;
+  margin-top: 60px;
+}
+
+h3 {
+  text-align: center;
 }
 
 #search button  {

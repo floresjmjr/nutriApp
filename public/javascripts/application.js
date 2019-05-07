@@ -10,7 +10,9 @@ $(function() {
 
     servingChange: function() {
       $('main').on('change', 'select', (e)=>{
-        $(e.target).closest('form').submit();
+        if(e.target.name === 'serving'){
+          $(e.target).closest('form').submit();
+        }
       })
     },
 
@@ -26,6 +28,7 @@ $(function() {
         request.addEventListener('load', (response)=>{
           if(request.status === 200) {
             console.log('was added')
+            this.messageUser()
           } else {
             console.log('problem!')
           }
@@ -51,12 +54,16 @@ $(function() {
       })
     },
 
+    messageUser: function() {
+      alert('The item you selected has been added')
+    },
+
     removeFromDisplay: function(id) {
       console.log('removeFoodFromDisplay', id);
       var button = $('#displayLog button').filter((idx, button)=>{
         return button.value === id;
       })
-      button.closest('li').remove();
+      button.closest('tr').remove();
     },
 
 
