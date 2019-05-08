@@ -2,6 +2,12 @@ $(function() {
 
   const Log = {
 
+    // Heroku local
+    // rootUrl: 'http://localhost:5000',
+
+    // Heroku open
+    rootUrl: 'https://nutrition-application.herokuapp.com',
+
     loadpage: function() {
       this.addToDB();
       this.deleteFromDB();
@@ -22,7 +28,7 @@ $(function() {
         var data = {};
         data['qty'] = $(e.target).closest('ul').find('input').val()
         const request = new XMLHttpRequest();
-        request.open('POST', `http://3.213.140.178:3000/item/${id}`)
+        request.open('POST', this.rootUrl + `/item/${id}`)
         request.setRequestHeader('Content-type', 'application/json')
         request.send(JSON.stringify(data))
         request.addEventListener('load', (response)=>{
@@ -41,7 +47,7 @@ $(function() {
         const id = $(e.target).val();
         console.log('deleteFood triggered', id)
         const request = new XMLHttpRequest();
-        request.open('DELETE', `http://3.213.140.178:3000/log/${id}`)
+        request.open('DELETE', this.rootUrl + `/log/${id}`)
         request.send();
         request.addEventListener('load', ()=>{
           if(request.status === 200) {
