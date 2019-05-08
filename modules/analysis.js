@@ -28,7 +28,7 @@ module.exports = {
 
         if (Number.isNaN(Number(nutrient.value))) {
         } else {
-          totalData[idx].value += nutrient.value;
+          totalData[idx].value += Number(nutrient.value);
         }
       })
     })
