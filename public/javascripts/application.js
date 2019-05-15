@@ -3,10 +3,10 @@ $(function() {
   const Log = {
 
     // Heroku local
-    rootUrl: 'http://localhost:3000',
+    // rootUrl: 'http://localhost:3000',
 
     // Heroku open
-    // rootUrl: 'https://nutrition-application.herokuapp.com',
+    rootUrl: 'https://nutrition-application.herokuapp.com',
 
     loadpage: function() {
       this.addToDB();
