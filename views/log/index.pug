@@ -7,34 +7,36 @@ block content
     //- section#logList
     if(entries)
       table
-        tr
-          th#test Qty
-          th Name/Serving
-          th Calories
-          th Fats
-          th Proteins
-          th Carbs
-          th= ''
-        each entry in entries
+        thead
           tr
-            td(class='qty') #{entry.qty}
-            td(class='nameServing') 
-                a(href='/item/' + entry.ndbno) #{entry.name}
-                p #{entry.serving.qty} #{entry.serving.label} (#{entry.serving.eqv} #{entry.serving.eunit})
-            td #{entry.calories[0].value}#{entry.calories[0].unit}
-            td #{entry.fats[0].value}#{entry.fats[0].unit}
-            td #{entry.proteins[0].value}#{entry.proteins[0].unit}
-            td #{entry.carbs[0].value}#{entry.carbs[0].unit}
-            td(class='delete')
-              button(name='deleteFromLog' value=entry._id) Delete
-        tr(class='totals')
-          td= ''
-          td= ''
-          td #{roundValues(totals.calories[0].value, true)} #{totals.calories[0].unit}
-          td #{roundValues(totals.fats[0].value)} #{totals.fats[0].unit}
-          td #{roundValues(totals.proteins[0].value)} #{totals.proteins[0].unit}
-          td #{roundValues(totals.carbs[0].value)} #{totals.carbs[0].unit}
-          td= ''
+            th Qty
+            th Name/Serving
+            th Calories
+            th Fats
+            th Proteins
+            th Carbs
+            th= ''
+        tbody
+          each entry in entries
+            tr
+              td(class='qty') #{entry.qty}
+              td(class='nameServing') 
+                  a(href='/item/' + entry.ndbno) #{entry.name}
+                  p #{entry.serving.qty} #{entry.serving.label} (#{entry.serving.eqv} #{entry.serving.eunit})
+              td #{entry.calories[0].value}#{entry.calories[0].unit}
+              td #{entry.fats[0].value}#{entry.fats[0].unit}
+              td #{entry.proteins[0].value}#{entry.proteins[0].unit}
+              td #{entry.carbs[0].value}#{entry.carbs[0].unit}
+              td(class='delete')
+                button(name='deleteFromLog' value=entry._id) Delete
+          tr(class='totals')
+            td= ''
+            td= ''
+            td #{roundValues(totals.calories[0].value, true)} #{totals.calories[0].unit}
+            td #{roundValues(totals.fats[0].value)} #{totals.fats[0].unit}
+            td #{roundValues(totals.proteins[0].value)} #{totals.proteins[0].unit}
+            td #{roundValues(totals.carbs[0].value)} #{totals.carbs[0].unit}
+            td= ''
     else
       p No entires currently
 

@@ -1,22 +1,26 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 nav {
   position: absolute;
   display: block;
-  width: 200px;
+  width: 150px;
   background:  #c9d7e8;
   height: 100%;
   border-radius: 5px;
+  font-size: 16px;
+  font-weight: 900;
 }
 
 main {
   display: block;
-  margin-left: 210px;
+  margin-left: 160px;
   background: #edf2f7;
   border-radius: 5px;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
 }
 
 .resultsHeader {
@@ -26,6 +30,10 @@ main {
 nav h2 {
   text-align: center;
   margin: 40px 0;
+}
+
+nav ul {
+  margin-top: 50px;
 }
 
 nav li {
@@ -38,6 +46,7 @@ nav li {
   padding-top: 40px;
   border: none;
   text-align: center;
+  font-weight: 900;
 }
 
 main li {
@@ -117,6 +126,7 @@ h3 {
 
 
 /* Display Nutritional Information */
+
 #displayFood {
   position: relative;
   font-size: 11px;
@@ -150,21 +160,9 @@ h3 {
   display: inline-block;
 }
 
-/* Item heading */
 #displayFood header h3 {
   display: block;
   padding: 0;
-}
-
-/* Analysis heading */
-#displayFood h3 {
-  padding: 20px 0;
-}
-
-#displayFood header {
-  text-align: center;
-  color: #2d486c;
-  margin: 20px 0;
 }
 
 #displayFood tr {
@@ -173,7 +171,7 @@ h3 {
   color: #2d486c;
   border-bottom: 1px solid grey;
   text-align: left;
-  width: 245px;
+  width: auto;
 }
 
 #displayFood td, #displayFood th {
@@ -185,7 +183,16 @@ h3 {
   width: 120px;
   text-align: left;
   box-sizing: border-box;
+  padding-left: 10px;
 }
+
+#displayFood th {
+  font-size: 13px;
+}
+#displayFood th.name {
+  padding: 0;
+}
+
 
 #displayFood .value {
   width: 80px;
@@ -208,6 +215,34 @@ h3 {
 #overview .value {
   padding-left: 50px;
 }
+
+#displayFood #quantity {
+  width: 40px;
+  border-radius: 20px;
+  padding-left: 5px;
+  margin-left: 5px;
+}
+
+
+/* Analysis */
+
+#displayFood h3 {
+  font-size: 15px;
+  padding: 20px 0;
+}
+
+#displayFood header {
+  text-align: center;
+  color: #2d486c;
+  margin: 20px 0;
+}
+
+#displayFood h2 {
+  font-size:18px;
+  font-weight: 900;
+  padding: 20px 0;
+}
+
 
 /* Nutrient Lookup */
 
@@ -257,9 +292,7 @@ h3 {
   text-align: center;
   background: lightgrey;
   height: 45px;
-  padding: 0;
 }
-
 
 #nutrientTable tr:nth-child(odd) {
   background-color: #fff;
@@ -325,18 +358,265 @@ h3 {
   margin: 0;
 }
 
-/* Analysis (same as breakdown(displayFood))*/
+#displayLog #mobileTotals {
+  display: none;
+}
+
 
 /* Responsive Layout Settings */
 
-/* @media all and (max-width: 840px) {
+@media all and (max-width: 1150px) {
+
+  body {
+    margin: 15px;
+    font-size: 12px;
+  }
 
   nav {
+    position: relative;
+    height: 100%;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 15px 0;
+  }
+
+  main {  
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  nav {
+    position: relative;
+    height: 100%;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 15px 0;
+  }
+
+  nav ul {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    text-align: center;
+  }
+
+}
+
+@media all and (max-width: 950px) {
+
+  #displayFood #overview {
+    width: 200px
+  }
+
+  #displayFood div {
+    margin-right: 5px;
+  }
+
+  #displayFood td.value {
+    padding: 0;
+  }
+
+}
+
+@media all and (max-width: 950px) {
+
+  #displayFood div {
+    display: block;
+  }
+
+}
+
+
+@media all and (max-width: 650px) {
+
+  body {
+    margin: 15px;
+    font-size: 12px;
+  }
+
+  nav {
+    position: relative;
+    height: 100%;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 15px 0;
+  }
+
+  nav ul {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    text-align: center;
+  }
+
+  main {  
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin: 40px 0;
+  }
+
+  h4 {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  h3 {
+    font-size: 15px;
+    margin-bottom: 30px;
+  }
+
+
+
+/* Search Layout */
+
+  #search {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    padding-top: 20px;
+  }
+
+  #search label {
     display: none;
   }
 
-  main {
-    margin-left: 0;
+  #search select, #search button {
+    margin-top: 20px;
+    border-radius: 20px;    
   }
 
-} */
+  #search button {
+    text-align-last: center;
+    text-align: center;
+    padding: 0;
+  }
+
+  #search input {
+    display: block;
+    margin: 0 auto;
+  }
+
+/* listOfGroup */
+
+#listOfGroup {
+  margin: 0;
+  padding: 0;
+  padding: 0 7%;
+  width: auto;
+}
+
+/* Display Food */
+
+  #displayFood div {
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  #displayFood div:last-of-type {
+    margin: 0 auto;
+  }
+
+  #displayFood ul {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  #displayFood li {
+    display: block;
+  }
+
+  #displayFood select {
+    width: auto;
+    text-align: center;
+    text-align-last: center;
+    border: 1px solid black;
+  }
+
+  #displayFood button {
+    border: 1px solid black;
+    border-radius: 20px;
+  }
+
+  /* Log */
+
+  #displayLog {
+    padding: 0 3%;
+    margin: 0;
+  }
+
+  #displayLog td {
+    padding: 5px;
+    display: none;
+  }
+
+  #displayLog .nameServing, #displayLog .qty, #displayLog .delete  {
+    display: table-cell;
+    width: auto;
+  }
+
+  #displayLog thead th:nth-child(1n+3) {
+    display: none;
+  }
+
+  #displayLog table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  #displayLog #mobileTotals {
+    display: block;
+  }
+
+/* Nutrient Table */
+
+  #nutrientTable table {
+    width: 100%;
+    padding: 0 3%;
+    box-sizing: border-box;
+  }
+
+  .nutrientServing, .nutrientValue {
+    display: none;
+  }
+
+  #nutrientTable .nutrientName {
+    width: 100%;
+    box-sizing: border-box;
+
+  }
+
+  .nutrientDV {
+    width: 20%;
+    vertical-align: middle;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
+
+
+
+}

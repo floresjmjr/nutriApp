@@ -4,17 +4,19 @@ doctype html
 html(lang='en')
   head
     title NutriApp
+    meta(name="viewport" content="initial-scale=1")
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet")    
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:medium" rel="stylesheet")    
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
     script(src='/javascripts/application.js')
   body
     nav
-      h2 FirstName
       ul
         li 
           a(href='/search') Search
         li 
-          a(href='/nutrient') Nutrient Lookup 
+          a(href='/nutrient') Nutrient 
         li 
           a(href='/log') Log
         li

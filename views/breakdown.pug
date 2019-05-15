@@ -8,7 +8,6 @@ block content
         ul#servingQuantity 
           li 
             label(for='quantity') Quantity:
-          li 
             input(type='number' id='quantity' value='1')
           li 
             form(method='GET' action=`/serving`)
@@ -19,7 +18,7 @@ block content
           li
             button(name='addToLog' value=item.ndbno) Add Item
     if(totals)
-        h3 Your Nutrition Overview
+        h2 Your Nutrition Overview
     div#overview
       section(id='calories')
         h3 Calorie Information
