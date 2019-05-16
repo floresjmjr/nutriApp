@@ -1,6 +1,8 @@
 body {
   font-size: 16px;
   font-family: 'Montserrat', sans-serif;
+  max-width: 1300px;
+  margin: auto;
 }
 
 nav {
