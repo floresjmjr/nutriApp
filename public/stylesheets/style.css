@@ -319,6 +319,7 @@ h3 {
 }
 
 #displayLog table {
+  width: 100%;
   margin: auto;
 }
 
@@ -387,15 +388,6 @@ h3 {
     width: auto;
   }
 
-  nav {
-    position: relative;
-    height: 100%;
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 15px 0;
-  }
-
   nav ul {
     height: 100%;
     padding: 0;
@@ -414,25 +406,28 @@ h3 {
 
 @media all and (max-width: 950px) {
 
-  #displayFood #overview {
-    width: 200px
+  #displayFood div {
+    display: block;
+    margin: auto;
+    width: 350px;
   }
 
-  #displayFood div {
-    margin-right: 5px;
+  #displayFood table {
+    width: 100%;
   }
 
   #displayFood td.value {
     padding: 0;
   }
 
-}
-
-@media all and (max-width: 950px) {
-
-  #displayFood div {
-    display: block;
+  #displayFood div:last-of-type {
+    margin: auto;
   }
+
+  #displayFood .name {
+    width: 190px   /* 120px originally plus 70 from difference between (350-280px) of divs*/
+  }
+
 
 }
 
@@ -440,17 +435,19 @@ h3 {
 @media all and (max-width: 650px) {
 
   body {
-    margin: 15px;
+    margin: 0;
     font-size: 12px;
   }
 
   nav {
-    position: relative;
-    height: 100%;
+    position: fixed;
+    height: 20px;
     display: block;
     width: 100%;
     margin: 0;
     padding: 15px 0;
+    left: 0;
+    z-index: 1;
   }
 
   nav ul {
@@ -470,6 +467,7 @@ h3 {
   main {  
     margin: 0;
     padding: 0;
+    padding-top: 40px;
     width: auto;
   }
 
@@ -585,7 +583,6 @@ h3 {
   #displayLog table {
     margin: 0;
     padding: 0;
-    width: 100%;
   }
 
   #displayLog #mobileTotals {
