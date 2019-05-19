@@ -1,5 +1,4 @@
 const request = require('request');
-const Password = require('../passwords/api')
 
 module.exports = {
   
@@ -8,7 +7,7 @@ module.exports = {
   components: ['vitamins', 'minerals', 'fats', 'carbs', 'proteins', 'calories'],
 
   usdaApiKey: function(){
-    return Password.usda;
+    return process.env.USDA_API_KEY;
   },
 
   cleanName: function(name){
