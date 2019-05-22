@@ -431,6 +431,31 @@ h3 {
     width: 190px   /* 120px originally plus 70 from difference between (350-280px) of divs*/
   }
 
+/* Nutrient Table */
+
+  #nutrientTable table {
+    width: 100%;
+    padding: 0 3%;
+    box-sizing: border-box;
+  }
+
+  .nutrientServing, .nutrientValue {
+    display: none;
+  }
+
+  #nutrientTable .nutrientName {
+    width: 100%;
+    box-sizing: border-box;
+
+  }
+
+  .nutrientDV {
+    width: 20%;
+    vertical-align: middle;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
+
 
 }
 
@@ -591,32 +616,5 @@ h3 {
   #displayLog #mobileTotals {
     display: block;
   }
-
-/* Nutrient Table */
-
-  #nutrientTable table {
-    width: 100%;
-    padding: 0 3%;
-    box-sizing: border-box;
-  }
-
-  .nutrientServing, .nutrientValue {
-    display: none;
-  }
-
-  #nutrientTable .nutrientName {
-    width: 100%;
-    box-sizing: border-box;
-
-  }
-
-  .nutrientDV {
-    width: 20%;
-    vertical-align: middle;
-    padding-right: 10px;
-    box-sizing: border-box;
-  }
-
-
 
 }
