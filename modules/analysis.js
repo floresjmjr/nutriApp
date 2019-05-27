@@ -14,21 +14,24 @@ module.exports = {
   },
 
   calculateTotals: function(entries, group) {
-    console.log('calculateTotals')
+    console.log('calculateTotals', entries[0].name, entries[0].qty)
     var totalData = [];    //this can be just an array, above its an object
     entries.forEach((item)=>{
       item[group].forEach((nutrient, idx)=>{
         if (totalData[idx] === undefined){
           totalData[idx] = {};
+          totalData[idx].value = 0
+        }
+        if (nutrient.unit) {
           totalData[idx].name = nutrient.name;
           totalData[idx].nutrient_id = nutrient.nutrient_id;
           totalData[idx].unit = nutrient.unit
-          totalData[idx].value = 0
         }
-
-        if (Number.isNaN(Number(nutrient.value))) {
+        if (Number.isNaN(Number(nutrient.value) || nutrient.value === 'unk')) {
         } else {
-          totalData[idx].value += Number(nutrient.value);
+          var total = Number(nutrient.value) * Number(item.qty)
+          totalData[idx].value += total;
+
         }
       })
     })
