@@ -133,10 +133,11 @@ h3 {
 #displayFood {
   position: relative;
   font-size: 11px;
-  margin: 10px;
+  padding: 10px;
   border: 1px solid darkgrey;
   border-radius: 5px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 #displayFood div {
@@ -163,9 +164,10 @@ h3 {
   display: inline-block;
 }
 
-#displayFood header h3 {
+#displayFood h3 {
   display: block;
-  padding: 0;
+  font-size: 15px;
+  padding: 20px 0;
 }
 
 #displayFood tr {
@@ -226,18 +228,19 @@ h3 {
   margin-left: 5px;
 }
 
+#displayFood #servingQuantity {
+  margin: 0;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
 
 /* Analysis */
 
-#displayFood h3 {
-  font-size: 15px;
-  padding: 20px 0;
-}
 
 #displayFood header {
   text-align: center;
   color: #2d486c;
-  margin: 20px 0;
+  padding: 20px 0;
 }
 
 #displayFood h2 {
