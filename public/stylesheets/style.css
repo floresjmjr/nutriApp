@@ -244,6 +244,7 @@ h3 {
   text-align: center;
   color: #2d486c;
   padding: 20px 0;
+  box-sizing: border-box;
 }
 
 #displayFood h2 {
