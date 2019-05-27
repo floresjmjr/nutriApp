@@ -372,8 +372,9 @@ h3 {
   background-color: #c9d7e8
 }
 
-.nameServing p {
+#displayLog .nameServing p {
   margin: 0;
+  text-align: left;
 }
 
 #displayLog #mobileTotals {
