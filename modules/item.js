@@ -195,13 +195,13 @@ module.exports = {
   setViTMinTemplate: function(nArr, type) {
     var ids = [];
     var missingNutrients = [];
-    var queryNutrientIds = nArr.map((nObj)=>{return nObj.nutrient_id})
+    var queryNutrientIds = nArr.map((nObj)=>{return Number(nObj.nutrient_id)})
     // Create id array for type of nutrient
     if (type === 'vitamins') {
-      ids = this.vitReferenceArr.map((obj)=>{return obj.id})
+      ids = this.vitReferenceArr.map((obj)=>{return Number(obj.id)})
     }
     if (type === 'minerals') {
-      ids = this.minReferenceArr.map((obj)=>{return obj.id})
+      ids = this.minReferenceArr.map((obj)=>{return Number(obj.id)})
     }
     // Find which nutrients are missing using the reference data
     ids.forEach((id, index)=>{
@@ -217,12 +217,12 @@ module.exports = {
     newNObj = {};
     
     if (type === 'vitamins') {
-      newNObj.nutrient_id = this.vitReferenceArr[index].id
+      newNObj.nutrient_id = Number(this.vitReferenceArr[index].id)
       newNObj.name = this.vitReferenceArr[index].name
     }
     
     if (type === 'minerals') {
-      newNObj.nutrient_id = this.minReferenceArr[index].id
+      newNObj.nutrient_id = Number(this.minReferenceArr[index].id)
       newNObj.name = this.minReferenceArr[index].name 
     }
     

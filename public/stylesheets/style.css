@@ -237,6 +237,10 @@ h3 {
   box-sizing: border-box;
 }
 
+#displayLog p {
+  text-align: center;
+}
+
 /* Analysis */
 
 

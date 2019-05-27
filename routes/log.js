@@ -7,9 +7,14 @@ const Analysis = require('../modules/analysis.js')
 router.get('/log', (req, res, next)=>{
   console.log('/log GET')
   Database.retrieveEntries().then((results)=>{
-    console.log('results retrieved', results[0])  
-    var totals = Analysis.createTotals(results);
-    res.render('./log/index', {
+    if(results.length) {
+      console.log('results retrieved', results[0])  
+      var totals = Analysis.createTotals(results);
+    } else {
+      results = false;
+      totals = false;
+    }
+      res.render('./log/index', {
       totals: totals,
       entries: results,
     })

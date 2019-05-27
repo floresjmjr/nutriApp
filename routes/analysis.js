@@ -6,10 +6,15 @@ var Analysis = require(path.resolve(path.dirname(__dirname), './modules/analysis
 
 router.get('/analysis', (req, res, next)=>{
   Database.retrieveEntries().then((queryResults)=>{
+    if(queryResults.length) {
+      var item = Analysis.createTotals(queryResults)
+    } else {
+      var item = false;
+    }
     res.render('breakdown', {
       addFood: false,
       totals: true,
-      item: Analysis.createTotals(queryResults),
+      item: item,
     })
   }).catch((error)=>{ console.log(error) })
 })

@@ -19,85 +19,88 @@ block content
             button(name='addToLog' value=item.ndbno) Add Item
     if(totals)
         h2 Your Nutrition Overview
-    div#overview
-      section(id='calories')
-        h3 Calorie Information
-        table
-          tr
-            th(class='name') #{nutrientHeader().name}
-            th= ''
-          tr
-            td(class='name') Total Calories 
-            td(class='value') #{item.calories[0].value} #{item.calories[0].unit}
-          //- tr
-          //-   td(class='name') Carbohydrate
-          //-   td(class='value') #{calculateCal(item, 'carbs')} #{item.calories[0].unit}
-          //-   td
-          //- tr
-          //-   td(class='name') Protein 
-          //-   td(class='value') #{calculateCal(item, 'proteins')} #{item.calories[0].unit}
-          //-   td             
-          //- tr
-          //-   td(class='name') Fat 
-          //-   td(class='value') #{calculateCal(item, 'fats')} #{item.calories[0].unit}
-          //-   td             
+    if(item)
+      div#overview
+        section(id='calories')
+          h3 Calorie Information
+          table
+            tr
+              th(class='name') #{nutrientHeader().name}
+              th= ''
+            tr
+              td(class='name') Total Calories 
+              td(class='value') #{item.calories[0].value} #{item.calories[0].unit}
+            //- tr
+            //-   td(class='name') Carbohydrate
+            //-   td(class='value') #{calculateCal(item, 'carbs')} #{item.calories[0].unit}
+            //-   td
+            //- tr
+            //-   td(class='name') Protein 
+            //-   td(class='value') #{calculateCal(item, 'proteins')} #{item.calories[0].unit}
+            //-   td             
+            //- tr
+            //-   td(class='name') Fat 
+            //-   td(class='value') #{calculateCal(item, 'fats')} #{item.calories[0].unit}
+            //-   td             
 
-      section(id='proteinCarbs')
-        h3 Protein and Carbohydrates
-        table
-          tr
-            th(class='name') #{nutrientHeader().name}
-            th= ''
-          each protein in item.proteins
-            tr 
-              td(class='indent name') #{protein.name}
-              td(class='value') #{roundValues(protein.value)} #{protein.unit}          
-          each carb in item.carbs
-            tr 
-              td(class='indent name') #{carb.name}
-              td(class='value') #{roundValues(carb.value)} #{carb.unit}
-
-
-      section(id='fats')
-        h3 Fats & Fatty Acids
-        table 
-          tr
-            th(class='name') #{nutrientHeader().name}
-            th= ''
-          each fat in item.fats
-            tr 
-              td(class='indent name') #{fat.name}
-              td(class='value') #{roundValues(fat.value)} #{fat.unit}
+        section(id='proteinCarbs')
+          h3 Protein and Carbohydrates
+          table
+            tr
+              th(class='name') #{nutrientHeader().name}
+              th= ''
+            each protein in item.proteins
+              tr 
+                td(class='indent name') #{protein.name}
+                td(class='value') #{roundValues(protein.value)} #{protein.unit}          
+            each carb in item.carbs
+              tr 
+                td(class='indent name') #{carb.name}
+                td(class='value') #{roundValues(carb.value)} #{carb.unit}
 
 
-    div#vitamins
-      section
-        h3 Vitamins       
-        table
-          tr
-            th(class='name') #{nutrientHeader().name}
-            th
-            th(class='value') #{nutrientHeader().dailyValues}        
-          each vitamin in item.vitamins
-            tr 
-              td(class='name') #{vitamin.name} 
-              if(vitamin.unit)
-                td(class='value') #{roundValues(vitamin.value)}  #{vitamin.unit} 
-                td #{getDailyValues(vitamin)}
-              else
-                td(class='value') unk
-                td ~
+        section(id='fats')
+          h3 Fats & Fatty Acids
+          table 
+            tr
+              th(class='name') #{nutrientHeader().name}
+              th= ''
+            each fat in item.fats
+              tr 
+                td(class='indent name') #{fat.name}
+                td(class='value') #{roundValues(fat.value)} #{fat.unit}
 
-    div#minerals
-      section
-        h3 Minerals       
-        table
-          tr
-            th(class='name') #{nutrientHeader().name}
-            th
-            th(class='value') #{nutrientHeader().dailyValues}
-          each mineral in item.minerals
-            tr 
-              td(class='name') #{mineral.name} 
-              td(class='value') #{roundValues(mineral.value)} #{mineral.unit} 
-              td #{getDailyValues(mineral)}
+
+      div#vitamins
+        section
+          h3 Vitamins       
+          table
+            tr
+              th(class='name') #{nutrientHeader().name}
+              th
+              th(class='value') #{nutrientHeader().dailyValues}        
+            each vitamin in item.vitamins
+              tr 
+                td(class='name') #{vitamin.name} 
+                if(vitamin.unit)
+                  td(class='value') #{roundValues(vitamin.value)}  #{vitamin.unit} 
+                  td #{getDailyValues(vitamin)}
+                else
+                  td(class='value') unk
+                  td ~
+
+      div#minerals
+        section
+          h3 Minerals       
+          table
+            tr
+              th(class='name') #{nutrientHeader().name}
+              th
+              th(class='value') #{nutrientHeader().dailyValues}
+            each mineral in item.minerals
+              tr 
+                td(class='name') #{mineral.name} 
+                td(class='value') #{roundValues(mineral.value)} #{mineral.unit} 
+                td #{getDailyValues(mineral)}
+    else
+      h3 Sorry, there are no items to analyze.

@@ -51,6 +51,7 @@ $(function() {
           if(request.status === 200) {
             console.log('was deleted')
             this.removeFromDisplay(id);
+            location.reload();
           } else {
             console.log("wasn't deleted", request.status)
           }

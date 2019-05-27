@@ -21,17 +21,15 @@ module.exports = {
         if (totalData[idx] === undefined){
           totalData[idx] = {};
           totalData[idx].value = 0
-        }
-        if (nutrient.unit) {
           totalData[idx].name = nutrient.name;
           totalData[idx].nutrient_id = nutrient.nutrient_id;
-          totalData[idx].unit = nutrient.unit
         }
         if (Number.isNaN(Number(nutrient.value) || nutrient.value === 'unk')) {
         } else {
+          totalData[idx].unit = nutrient.unit
+
           var total = Number(nutrient.value) * Number(item.qty)
           totalData[idx].value += total;
-
         }
       })
     })
