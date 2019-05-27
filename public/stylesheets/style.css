@@ -168,6 +168,8 @@ h3 {
   display: block;
   font-size: 15px;
   padding: 20px 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 #displayFood tr {
