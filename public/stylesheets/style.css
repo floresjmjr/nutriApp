@@ -456,7 +456,7 @@ h3 {
   }
 
   #displayFood .name {
-    width: 190px   /* 120px originally plus 70 from difference between (350-280px) of divs*/
+    width: 350px;
   }
 
 /* Nutrient Table */
@@ -487,7 +487,7 @@ h3 {
 }
 
 
-@media all and (max-width: 650px) {
+@media all and (max-width: 600px) {
 
   body {
     margin: 0;
@@ -575,39 +575,6 @@ h3 {
   height: 70%;
 }
 
-/* Display Food */
-
-  #displayFood div {
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  #displayFood div:last-of-type {
-    margin: 0 auto;
-  }
-
-  #displayFood ul {
-    padding: 0;
-    margin: 0;
-    text-align: center;
-  }
-
-  #displayFood li {
-    display: block;
-  }
-
-  #displayFood select {
-    width: auto;
-    text-align: center;
-    text-align-last: center;
-    border: 1px solid black;
-  }
-
-  #displayFood button {
-    border: 1px solid black;
-    border-radius: 20px;
-    background-color: lightskyblue;
-  }
 
   /* Log */
 
@@ -638,5 +605,60 @@ h3 {
   #displayLog #mobileTotals {
     display: block;
   }
+
+}
+
+
+
+@media all and (max-width: 450px) {
+
+
+  /* Display Food */
+
+  #displayFood {
+    padding: 0;
+    border: none;
+  }
+
+
+
+  #displayFood section{
+    padding: 0;
+    border: none;
+    border-top: 5px solid grey;
+    border-radius: none;
+  }
+
+  #displayFood div {
+    margin: 0 auto;
+    padding: 0;
+    width: auto;
+  }
+
+  #displayFood div:last-of-type {
+    margin: 0 auto;
+  }
+
+  #displayFood ul {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  #displayFood li {
+    display: block;
+  }
+
+  #displayFood select {
+    width: auto;
+    text-align: center;
+    text-align-last: center;
+    border: 1px solid black;
+  }
+
+  #displayFood button {
+    border: 1px solid black;
+  }
+
 
 }
