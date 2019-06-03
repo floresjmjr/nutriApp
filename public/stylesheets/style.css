@@ -26,6 +26,13 @@ main {
   box-sizing: border-box;
 }
 
+button {
+  border-radius: 10px;
+  background-color: lightskyblue;
+  color: #fff;
+  cursor: pointer;
+}
+
 .resultsHeader {
   text-align: center;
 }
@@ -57,11 +64,6 @@ main li {
   list-style: none;
 }
 
-/* .active {
-  background-color: #63659c;
-  color: #fff;
-} */
-
 #search input {
   margin-left: 15px;
   border-radius: 10px;
@@ -83,6 +85,7 @@ main li {
   height: 20px;
   background-color: lightskyblue;
   color: #fff;
+  border-radius: 10px;
 }
 
 #results li {
@@ -97,10 +100,6 @@ form h2 {
 a {
   color: #000;
   text-decoration: none;
-  cursor: pointer;
-}
-
-button {
   cursor: pointer;
 }
 
@@ -125,6 +124,8 @@ h3 {
   width: 100px;
   margin-left: 20px;
   border-radius: 5px;
+  background-color: lightskyblue;
+  color: #fff;
 }
 
 
@@ -212,6 +213,9 @@ h3 {
 
 #displayFood select {
   width: 280px;
+  background-color: lightskyblue;
+  border-radius: 10px;
+  color: #fff;
 }
 
 #displayFood li {
@@ -272,7 +276,7 @@ h3 {
 }
 
 #nutrientTable tbody {
-  height: 700px;
+  height: 550px;
   overflow: auto;
 }
 
@@ -329,6 +333,7 @@ h3 {
 
 #displayLog h3 {
   text-align: center;
+  font-size: 18px;
 }
 
 #displayLog section {
@@ -387,23 +392,24 @@ h3 {
 @media all and (max-width: 1150px) {
 
   body {
-    margin: 15px;
+    margin: 0 15px;
     font-size: 12px;
   }
 
   nav {
-    position: relative;
-    height: 100%;
+    position: fixed;
+    height: 20px;
     display: block;
     width: 100%;
     margin: 0;
     padding: 15px 0;
+    left: 0;
+    z-index: 1;
   }
 
-  main {  
-    margin: 0;
-    padding: 0;
-    width: auto;
+  main {
+    padding-top: 40px;
+    margin: auto;
   }
 
   nav ul {
@@ -424,24 +430,7 @@ h3 {
 
 @media all and (max-width: 950px) {
 
-  body {
-    margin: 0 15px;
-  }
 
-  nav {
-    position: fixed;
-    height: 20px;
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 15px 0;
-    left: 0;
-    z-index: 1;
-  }
-
-  main {
-    padding-top: 40px;
-  }
 
   #listOfGroup {
     height: 550px;
@@ -560,7 +549,9 @@ h3 {
 
   #search select, #search button {
     margin-top: 20px;
-    border-radius: 20px;    
+    border-radius: 20px;
+    background-color: lightskyblue;
+    color: #fff;    
   }
 
   #search button {
@@ -615,6 +606,7 @@ h3 {
   #displayFood button {
     border: 1px solid black;
     border-radius: 20px;
+    background-color: lightskyblue;
   }
 
   /* Log */
