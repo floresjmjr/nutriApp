@@ -16,7 +16,7 @@ This application allows a user to search for food items using two USDA databases
 * Express
 
 ### Database
-* MongoDB (Atlas) - (I needed a NoSql database as the data I would be working with would be a pain to work with if it was sql based and I had to create many primary keys for the various tables I would need for the data I was given by the usda api).
+* MongoDB (Atlas) - (I thought that a NoSql database would have been more practical considering that I would have otherwise needed to create multiple tables and have multiple primary keys and having to connect them all would be messey.
 
 ### Deployment
 * Heroku - (Went with heroku as that's what I knew at the time and the CLI is pretty easy to work with and the documentation pretty clear.)
