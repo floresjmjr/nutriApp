@@ -5,26 +5,35 @@ html(lang='en')
   head
     title NutriApp
     meta(name="viewport" content="initial-scale=1")
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/layout.css')
+    link(rel='stylesheet', href='/stylesheets/searchResults.css')
+    link(rel='stylesheet', href='/stylesheets/breakdown.css')
+    link(rel='stylesheet', href='/stylesheets/foodLog.css')
+    link(rel='stylesheet', href='/stylesheets/nutrientLookup.css')
+    link(rel='stylesheet', href='/stylesheets/analysis.css')
+    link(rel='stylesheet', href='/stylesheets/responsive.css')
+
     link(href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet")    
     link(href="https://fonts.googleapis.com/css?family=Montserrat:medium" rel="stylesheet")    
     script(src="https://unpkg.com/babel-standalone@6/babel.min.js")
-    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
-    script(src='/javascripts/application.js')
-    script(src="https://d3js.org/d3.v5.js")
-    script(src="/javascripts/graph.js")
-
+    
   body
     nav
       ul
-        li 
-          a(href='/search') Search
-        li 
-          a(href='/nutrient') Nutrient 
-        li 
-          a(href='/log') Log
         li
-          a(href='/analysis') Analysis
+          a(href='/search') Search (by Name)
+        li 
+          a(href='/nutrient') Search (by Nutrient)
+        li 
+          a(href='/log') Food Log
+        li
+          a(href='/analysis') Daily Stats
 
     main
       block mainDisplay
+
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    script(src="https://d3js.org/d3.v5.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.js")
+    script(src='/javascripts/application.js')
+    script(src="/javascripts/generateGraphs.js")

@@ -9,7 +9,7 @@ var recentItem = {};
 
 // GET Item details
 router.get('/item/:ndbno', function(req, res, next) {
-  console.log('request for item');
+  // console.log('request for item');
   Item.getDetailsByNdbno(req.params.ndbno).then((body)=>{
     res.render('breakdown', {
       addFood: true,
@@ -20,14 +20,14 @@ router.get('/item/:ndbno', function(req, res, next) {
 
 // POST request for logging food
 router.post('/item/:ndbno', (req, res, next)=>{
-  console.log('add item', req.body.qty);
+  // console.log('add item', req.body.qty);
   Item.recentItem['qty'] = req.body.qty;
   Database.insertEntry(Item.recentItem).then((rObj)=>{
     // console.log('returned object :', rObj);
     // Needs a more appropriate way to valid that an entry was made
     if(rObj){
       res.sendStatus(200);
-      console.log('post was successful')
+      // console.log('post was successful')
     } else {
       res.sendStatus(500)
     }
@@ -36,7 +36,7 @@ router.post('/item/:ndbno', (req, res, next)=>{
 
 // Update request for getting new serving data
 router.get('/serving', (req, res, next)=>{
-  console.log('serving GET', req.query)
+  // console.log('serving GET', req.query)
   res.render('breakdown', {
     addFood: true,
     item: Item.updateItem(req.query.serving),

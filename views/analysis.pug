@@ -1,0 +1,38 @@
+extends searchLayout
+
+block content
+  article#analysis
+    if(totals)
+      h2(class='analysisTitle') Your Nutrition Overview
+      if(item)
+        div#overview
+          section
+            div(id='nutritionalInfoContainer')
+              h3(class='categoryHeader') Nutrional Information
+              table(class='nutritionalInfoTable')
+                body
+                  tr
+                    td(class='nameTotal') Calories 
+                    td(class='value') #{item.calories[0].value} #{item.calories[0].unit}     
+                  tr 
+                    td(class='nameTotal') #{item.proteins[0].name}
+                    td(class='value') #{roundValues(item.proteins[0].value)} #{item.proteins[0].unit}          
+                  tr 
+                    td(class='nameTotal') #{item.carbs[0].name}
+                    td(class='value') #{roundValues(item.carbs[0].value)} #{item.carbs[0].unit}                                  
+                  each carb in item.carbs.slice(1)
+                    tr 
+                      td(class='indent name') #{carb.name}
+                      td(class='value') #{roundValues(carb.value)} #{carb.unit}
+                  tr 
+                    td(class='nameTotal') #{item.fats[0].name}
+                    td(class='value') #{roundValues(item.fats[0].value)} #{item.fats[0].unit}          
+                  each fat in item.fats.slice(1)
+                    tr 
+                      td(class='indent name') #{fat.name}
+                      td(class='value') #{roundValues(fat.value)} #{fat.unit}
+
+
+
+    else
+      h3 Sorry, there are no items to analyze.

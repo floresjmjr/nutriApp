@@ -16,6 +16,7 @@ var nutrientRouter = require('./routes/nutrient');
 var logRouter = require('./routes/log');
 var itemRouter = require('./routes/item');
 var analysisRouter = require('./routes/analysis');
+const userTotals = require('./routes/userTotals');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,6 +35,7 @@ app.use('/', nutrientRouter);
 app.use('/', logRouter);
 app.use('/', itemRouter);
 app.use('/', analysisRouter);
+app.use('/', userTotals);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -11,7 +11,7 @@ router.get('/analysis', (req, res, next)=>{
     } else {
       var item = false;
     }
-    res.render('breakdown', {
+    res.render('analysis', {
       addFood: false,
       totals: true,
       item: item,

@@ -14,7 +14,7 @@ module.exports = {
   },
 
   deleteEntry: function(entryId) {
-    console.log('deleteEntry', entryId);
+    // console.log('deleteEntry', entryId);
     //Object id object
     return DB.getDB().collection('documents').deleteOne({"_id" : ObjectID(entryId)})
   }

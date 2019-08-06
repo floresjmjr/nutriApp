@@ -2,14 +2,15 @@ extends searchLayout
 
 block content
   if error
-    h2(class='resultsHeader') No results for 
+    h2(class='searchResultsHeader') No results for 
       i "#{searchTerm}".
   else
-    h2(class='resultsHeader') Results for 
-      i "#{searchTerm}".
-    ul#results
-      each category in categories
-        li 
-          h4 
-            a(href='/category/' + category.id target='_self') #{category.name} (#{category.count})
+    article#searchResults
+      h2(class='searchResultsHeader') Results for 
+        i "#{searchTerm}".
+      ul#searchResultsList
+        each category in categories
+          li 
+            h4 
+              a(href='/category/' + category.id target='_self') #{category.name} (#{category.count})
 

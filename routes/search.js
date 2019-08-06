@@ -17,7 +17,7 @@ router.get('/search', function(req, res, next) {
 
 // GET Results
 router.get('/search/results', function(req, res, next) {
-  console.log('request for results');
+  // console.log('request for results');
   Search.getCategories(req.query.db, req.query.query).then((body)=>{
     if (body.errors) {
       res.render('searchResults', {error: true,searchTerm: req.query.query})
@@ -32,7 +32,7 @@ router.get('/search/results', function(req, res, next) {
 
 // GET Category items
 router.get('/category/:id', function(req, res, next) {
-  console.log('request for category');
+  // console.log('request for category');
   var id = req.params.id;
   res.render('groupList', {
     category: Search.getItemsByCatId(id),

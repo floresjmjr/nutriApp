@@ -6,7 +6,7 @@ const Nutrient = require(path.resolve(path.dirname(__dirname), './modules/nutrie
 
 // Get Nutrient Search Page
 router.get('/nutrient', (req, res, next)=>{
-  console.log('request for nutrient lookup')
+  // console.log('request for nutrient lookup')
   res.render('nutrientLayout', {
     nutrients: Nutrient.createNutrientList(),
   })
@@ -14,7 +14,7 @@ router.get('/nutrient', (req, res, next)=>{
 
 // Get Nutrient Results Page
 router.get('/nutrient/results', (req, res, next)=>{
-  console.log('request for nutrient lookup', req.query.nutrient)
+  // console.log('request for nutrient lookup', req.query.nutrient)
   Nutrient.getFoodListByNutrient(req.query.nutrient).then((body)=>{
     res.render('nutrientResults', {
       nutrientName: Nutrient.findNameById(req.query.nutrient),

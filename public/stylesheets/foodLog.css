@@ -1,0 +1,57 @@
+/* Displaying the Log */
+
+
+#displayLog h3 {
+  text-align: center;
+  font-size: 18px;
+}
+
+#displayLog section {
+  display: block;
+}
+
+#displayLog table {
+  width: 100%;
+  margin: auto;
+}
+
+#displayLog th {
+  text-align: center;
+  background: lightgrey;
+}
+
+#displayLog td {
+  padding: 10px;
+  text-align: center;
+}
+
+#displayLog .nameServing {
+  width: 400px;
+  text-align: left;
+  font-weight: bold;
+}
+
+#displayLog dd {
+  margin: 0;
+}
+
+#displayLog .totals {
+  background: lightgrey;
+}
+
+#displayLog tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+#displayLog tr:nth-child(even) {
+  background-color: #c9d7e8
+}
+
+#displayLog .nameServing p {
+  margin: 0;
+  text-align: left;
+}
+
+#displayLog #mobileTotals {
+  display: none;
+}

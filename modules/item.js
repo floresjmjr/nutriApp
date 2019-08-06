@@ -49,13 +49,13 @@ module.exports = {
     newItemObj['carbs'] = partialItemObj.carbs
     newItemObj['fats'] = partialItemObj.fats
     newItemObj['notUpdated'] = true;
-    console.log(newItemObj);
+    // console.log(newItemObj);
     this.recentItem = newItemObj;
     return newItemObj;        
   },
 
   updateItem: function(newServing) {
-    console.log('updateItem', this.recentItem)
+    // console.log('updateItem', this.recentItem)
     var item = this.recentItem
     if(item.notUpdated) {
       item = this.createDefaultMeasure(item)
@@ -75,7 +75,6 @@ module.exports = {
     var index;
     item.measurements.forEach((m, idx)=>{
       if (String(m.eqv) === String(selectedServing.eqv)) {
-        console.log('match')
         index = idx;
       }
     })
@@ -93,7 +92,6 @@ module.exports = {
   },
 
   createDefaultMeasure: function(item) {
-    console.log('createDefaultMeasure')
     this.components.forEach((group)=>{
       item[group] = this.updateNutrients(item, group)
     })
@@ -101,7 +99,6 @@ module.exports = {
   },
 
   updateNutrients: function(item, group) {
-    console.log('updateNutrients')
     return item[group].map((nutrient)=>{
       if(!nutrient.measures) {
         nutrient['measures'] = [];
@@ -112,7 +109,7 @@ module.exports = {
   },
 
   replaceServingValues: function(item) {
-    console.log('replaceServingValues', item.serving)
+    // console.log('replaceServingValues', item.serving)
     this.components.forEach((group)=>{
       item[group].forEach((nutrient)=>{
         if (nutrient.unit){
@@ -120,8 +117,8 @@ module.exports = {
         }
       })
     })
-    console.log('after replaced', item.minerals[0].measures);
-    console.log('replaced!', item)
+    // console.log('after replaced', item.minerals[0].measures);
+    // console.log('replaced!', item)
     return item;
   },
 
@@ -153,22 +150,22 @@ module.exports = {
      //Group by Nutrient Types
     rawNutrientsArr.forEach((nObj)=>{
       if (calories.includes(Number(nObj.nutrient_id))) {
-        partialItemObj.calories.push(this.parseNutritentData(nObj));
+        partialItemObj.calories.push(this.cleanUpNutrientName(nObj));
       }
       if (proteins.includes(Number(nObj.nutrient_id))) {
-        partialItemObj.proteins.push(this.parseNutritentData(nObj));
+        partialItemObj.proteins.push(this.cleanUpNutrientName(nObj));
       }
       if (carbs.includes(Number(nObj.nutrient_id))) {
-        partialItemObj.carbs.push(this.parseNutritentData(nObj));
+        partialItemObj.carbs.push(this.cleanUpNutrientName(nObj));
       }
       if (fats.includes(Number(nObj.nutrient_id))) {
-        partialItemObj.fats.push(this.parseNutritentData(nObj));
+        partialItemObj.fats.push(this.cleanUpNutrientName(nObj));
       }
       if (vitaminIds.includes(Number(nObj.nutrient_id))) {
-        partialItemObj.vitamins.push(this.parseNutritentData(nObj));
+        partialItemObj.vitamins.push(this.cleanUpNutrientName(nObj));
       }
       if (mineralIds.includes(Number(nObj.nutrient_id))) {
-        partialItemObj.minerals.push(this.parseNutritentData(nObj));
+        partialItemObj.minerals.push(this.cleanUpNutrientName(nObj));
       }
     })
     return partialItemObj;
@@ -231,12 +228,15 @@ module.exports = {
   },
 
 
-  parseNutritentData: function(nObj) {
+  cleanUpNutrientName: function(nObj) {
+    var name = ''
     if (nObj.group === 'Lipids') {
-      var name = nObj.name.split(' ')[3];
+      name = nObj.name.split(' ')[3];
       nObj.name = name.substring(0,1).toUpperCase() + name.substring(1) + ' Fat';
     } else {
-      nObj.name = nObj.name.split(',')[0];
+      name = nObj.name.split(',')[0];
+      name = name.split('(')[0];
+      nObj.name = name;
     }
     return nObj;
   },
@@ -260,7 +260,6 @@ module.exports = {
   },
 
   getDetailsByNdbno: function(ndbnoId){
-    console.log('before apiKey')
     var apiKey = GenFunc.usdaApiKey();
     var encodedPath = `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbnoId}&type=f&format=json&api_key=${apiKey}`
     return GenFunc.usdaRequest(encodedPath)

@@ -1,0 +1,68 @@
+/* Analysis */
+
+#nutritionalInfoContainer {
+  border: 1px solid grey;
+  padding: 0 15px 20px 15px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  width: 340px;
+  font-size: 14px;
+  margin: 0 auto;
+
+}
+
+.nutritionalInfoTable {
+  text-align: center;
+  width: 100%;
+}
+
+.nutritionalInfoTable tr {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+  padding: 5px 0;
+}
+
+.nutritionalInfoTable td {
+  padding-left: 10px;
+}
+
+.analysisTitle {
+  font-size: 24px;
+  padding: 40px 0;
+  text-align: center;
+  margin: 0;
+}
+
+.categoryHeader {
+  display: block;
+  font-size: 20px;
+  padding: 20px 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.barHover {
+  opacity: .5;
+}
+
+.nutritionalInfoTable .nameTotal {
+  padding-left: 0;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#overview {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding-top: 50px;
+  align-items: center;
+}
+
+#overview > * {
+  margin-bottom: 50px;
+}
+

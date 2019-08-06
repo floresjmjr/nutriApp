@@ -1,7 +1,7 @@
 extends searchLayout
 
 block content
-  h3= category.name
+  h3(class='searchResultsHeader')= category.name
   ul(id='listOfGroup') 
     if category.items 
       each item in category.items

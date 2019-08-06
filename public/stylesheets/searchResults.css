@@ -1,0 +1,46 @@
+/* Search Results (search results and groupList) */
+
+
+#searchResults {
+  width: 70%;
+  margin: auto;
+}
+
+.searchResultsHeader {
+  text-align: center;
+  margin: 0;
+  padding: 60px 0;
+  font-size: 20px;
+}
+
+#searchResultsList {
+  padding: 0;
+}
+
+#searchResultsList li {
+  display: block;
+  padding: 0;
+}
+
+
+form h2 {
+  margin: 15px 0;
+  text-align: center;
+}
+
+
+#listOfGroup li {
+  font-size: 15px;
+}
+
+#listOfGroup {
+  overflow: auto;
+  height: 600px;
+  width: 600px;
+  margin: auto;
+}
+
+h3 {
+  text-align: center;
+}
+

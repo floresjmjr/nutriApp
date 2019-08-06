@@ -4,17 +4,16 @@ var GenFunc = require('./_community')
 module.exports = {
 
   createTotals: function(entries) {
-    console.log('createTotals')
     var entriesTotal = {};
     GenFunc.components.forEach((group)=>{
       entriesTotal[group] = this.calculateTotals(entries, group)
     })
-    console.log(entriesTotal)
+    // console.log(entriesTotal)
     return entriesTotal;
   },
 
   calculateTotals: function(entries, group) {
-    console.log('calculateTotals', entries[0].name, entries[0].qty)
+    // console.log('calculateTotals', entries[0].name, entries[0].qty)
     var totalData = [];    //this can be just an array, above its an object
     entries.forEach((item)=>{
       item[group].forEach((nutrient, idx)=>{
@@ -35,7 +34,9 @@ module.exports = {
     })
     return totalData;
   },
-  
+
+
+
 }
 
 

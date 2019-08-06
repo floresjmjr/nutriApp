@@ -2,14 +2,16 @@ extends layout
 
 block mainDisplay
   form(method='get' action='/search/results')
-    fieldset(id='search')
-      label(for='query') Search
-      input(type='text' name='query' id='query' placeholder='food item')
-      label(for='db')
-      select(name='db' id='db')
-        option(value='SR') by Food Group
-        option(value='LI') by Store Brand
-      button(type='submit') Submit
+    div(id='searchBar')
+      div(id='searchBox')
+        label(for='query') Search
+        input(type='text' name='query' id='query' placeholder='food item')
+      div(id='searchButtons')
+        label(for='db')
+        select(name='db' id='db')
+          option(value='SR') by Food Group
+          option(value='LI') by Store Brand
+        button(id='searchSubmit' type='submit') Submit
   block content
 
       

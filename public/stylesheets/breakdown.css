@@ -1,0 +1,112 @@
+/* Display Nutritional Information */
+
+#displayFood {
+  position: relative;
+  font-size: 11px;
+  padding: 10px;
+  border-bottom: 1px solid darkgrey;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#displayFood div {
+  display: inline-block;
+  margin-right: 20px;
+  width: 280px;
+  vertical-align: top;
+}
+
+#displayFood div:last-of-type {
+  margin-right: 0;
+}
+
+#displayFood section {
+  display: block;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 0 15px 20px 15px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+#displayFood button {
+  display: inline-block;
+}
+
+#displayFood h3 {
+  display: block;
+  font-size: 15px;
+  padding: 20px 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#displayFood tr {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+}
+
+#displayFood td, #displayFood th {
+  width: 50px;
+  text-align: right;
+}
+
+#displayFood .name {
+  width: 120px;
+  text-align: left;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
+
+#displayFood th {
+  font-size: 13px;
+}
+
+#displayFood th.name {
+  padding: 0;
+}
+
+
+#displayFood .value {
+  width: 80px;
+}
+
+
+#displayFood .indent {
+  padding-left: 10px;
+}
+
+#displayFood select {
+  width: 280px;
+  background-color: lightskyblue;
+  border-radius: 10px;
+  color: #fff;
+}
+
+#displayFood li {
+  display: inline-block;
+  margin: 0;
+  margin-right: 5px;
+}
+
+#displayFood #quantity {
+  width: 40px;
+  border-radius: 20px;
+  padding-left: 5px;
+  margin-left: 5px;
+}
+
+#displayFood #servingQuantity {
+  margin: 0;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+#displayLog p {
+  text-align: center;
+}
+
+#Overall table {
+  width: 100%;
+}

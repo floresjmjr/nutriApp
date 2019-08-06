@@ -7,7 +7,6 @@ module.exports = {
   },
 
   filterNformat: function(rawArr) {
-    console.log('filterNformat')
     var filteredArr = this.filteredResults(rawArr);
     return GenFunc.formatNames(filteredArr)
   },

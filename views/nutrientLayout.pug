@@ -2,7 +2,7 @@ extends layout
 
 block mainDisplay
   form(method='get' action='/nutrient/results')
-    fieldset(id='search')
+    div(id='nutrientSearch')
       label Select Nutrient
       select(name='nutrient')
         option(value='' hidden) Select Your Nutrient

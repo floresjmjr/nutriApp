@@ -1,0 +1,112 @@
+/* Globally */
+
+body {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  max-width: 1250px;
+  margin: auto;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Navigation */
+
+nav {
+  display: block;
+  background:  #c9d7e8;
+  font-size: 18px;
+  font-weight: 700;
+  height: 80px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  width: 80%;
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0;
+  height: 100%;
+}
+
+nav a {
+  height: 100%
+}
+
+nav h2 {
+  margin: 40px 0;
+}
+
+
+main {
+  display: block;
+  background: #edf2f7;
+  border-radius: 5px;
+  height: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+#searchBox, #searchButtons {
+  display: inline-block;
+}
+
+button {
+  border-radius: 10px;
+  background-color: lightskyblue;
+  color: #fff;
+  cursor: pointer;
+}
+
+#searchBar {
+  padding: 30px 0;
+  font-weight: 900;
+  border: none;
+  border-bottom: 1px solid grey;
+  text-align: center;
+}
+
+main li {
+  margin-bottom: 20px;
+  list-style: none;
+}
+
+#query {
+  margin-left: 15px;
+  border-radius: 10px;
+  border-style: none;
+  border: 1px solid darkgrey;
+  width: 250px;
+  height: 30px;
+  padding-left: 10px;
+}
+
+#query:focus {
+  outline: none;
+  border-color: #cc2900;
+  box-shadow: 2px 5px #888888;
+}
+
+#db {
+  margin-left: 10px;
+  background-color: lightskyblue;
+  color: #fff;
+  border-radius: 10px;
+  height: 30px;
+  width: 150px;
+}
+
+#searchSubmit  {
+  height: 30px;
+  width: 100px;
+  margin-left: 20px;
+  border-radius: 5px;
+  background-color: lightskyblue;
+  color: #fff;
+}

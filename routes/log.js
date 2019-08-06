@@ -5,10 +5,10 @@ const Analysis = require('../modules/analysis.js')
 
 //  Get log main layout
 router.get('/log', (req, res, next)=>{
-  console.log('/log GET')
+  // console.log('/log GET')
   Database.retrieveEntries().then((results)=>{
     if(results.length) {
-      console.log('results retrieved', results[0])  
+      // console.log('results retrieved', results[0])  
       var totals = Analysis.createTotals(results);
     } else {
       results = false;
@@ -22,9 +22,9 @@ router.get('/log', (req, res, next)=>{
 })
 
 router.delete('/log/:id', (req, res, next)=>{
-  console.log('/log DELETE', req.params.id)
+  // console.log('/log DELETE', req.params.id)
   Database.deleteEntry(req.params.id).then((rObj)=>{
-    console.log('/log DELETE inside promise', rObj.deletedCount)
+    // console.log('/log DELETE inside promise', rObj.deletedCount)
     if (rObj.deletedCount === 1) {
       res.sendStatus(200);
     } else {

@@ -1,0 +1,344 @@
+/* Responsive Layout Settings */
+
+@media all and (max-width: 950px) {
+
+  nav ul {
+    width: 80%;
+    font-size: 16px;
+  }
+
+  #overview {
+    width: 95%;
+    margin: auto;
+  }
+
+  #overview > * {
+    border-bottom: 5px solid grey;
+    padding-bottom: 20px;
+  }
+
+  #listOfGroup {
+    height: 550px;
+    padding: 0;
+  }
+
+  #displayFood div {
+    display: block;
+    margin: auto;
+    width: 350px;
+  }
+
+  #displayFood table {
+    width: 100%;
+  }
+
+  #displayFood td.value {
+    padding: 0;
+  }
+
+  #displayFood div:last-of-type {
+    margin: auto;
+  }
+
+/* Nutrient Table */
+
+  #nutrientTable table {
+    width: 100%;
+    padding: 0 3%;
+    box-sizing: border-box;
+  }
+
+  .nutrientServing, .nutrientValue {
+    display: none;
+  }
+
+  #nutrientTable .nutrientName {
+    width: 100%;
+    box-sizing: border-box;
+
+  }
+
+  .nutrientDV {
+    width: 20%;
+    vertical-align: middle;
+    padding-right: 10px;
+    box-sizing: border-box;
+  }
+
+}
+
+
+
+@media (max-width: 700px) {
+
+  /* Search */
+
+  #searchBox {
+    margin: 10px;
+  }
+
+  #db {
+    margin: 0;
+  }
+
+  nav ul {
+    font-size: 14px;
+  }
+
+  #searchBar {
+    padding: 20px 0;
+    font-size: 13px;
+  }  
+
+  #query {
+    height: 20px;
+    width: auto;
+  }
+
+  #db {
+    height: 20px;
+    width: auto;
+  }
+
+  #searchSubmit {
+    height: 20px;
+    width: auto;
+  }
+
+  /* Analysis */
+
+  .analysisTitle {
+    font-size: 18px;
+    padding: 25px 0;
+  }
+
+  .categoryHeader {
+    font-size: 16px;
+  }
+
+  #nutritionalInfo {
+    font-size: 12px;
+  }
+
+  .svgText {
+    font-size: 12px;
+  }
+
+}
+
+
+@media all and (max-width: 600px) {
+
+/* Search Layout */
+
+  nav li {
+    width: 80px;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .analysisTitle {
+    font-size: 18px;
+    padding: 15px 0;
+  }
+
+  #searchBar {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 15px 0;
+    width: 80%;
+    margin: auto;
+  }
+
+  /* listOfGroup */
+
+  #listOfGroup {
+    margin: 0;
+    padding: 0;
+    padding: 0 7%;
+    width: auto;
+    height: 70%;
+  }
+
+
+  /* Log */
+
+  #displayLog {
+    padding: 0 3%;
+    margin: 0;
+  }
+
+  #displayLog td {
+    padding: 5px;
+    display: none;
+  }
+
+  #displayLog .nameServing, #displayLog .qty, #displayLog .delete  {
+    display: table-cell;
+    width: auto;
+  }
+
+  #displayLog thead th:nth-child(1n+3) {
+    display: none;
+  }
+
+  #displayLog table {
+    margin: 0;
+    padding: 0;
+  }
+
+  #displayLog #mobileTotals {
+    display: block;
+  }
+
+}
+
+
+
+@media all and (max-width: 450px) {
+
+/* Search */
+
+  nav ul {
+    width: 100%;
+  }
+
+  /* Analysis */
+
+  #nutritionalInfoContainer {
+    width: 100%;
+    border-left: none;
+    border-right: none;
+    width: 90%;
+    margin: auto;
+    font-size: 12px;
+  }
+
+  .analysisTitle {
+    font-size: 16px;
+  }
+
+  .categoryHeader {
+    font-size: 14px;
+  }
+
+  .svgText {
+    font-size: 15px;
+  }
+
+  #overview section {
+    width: 100%;
+  }
+
+  /* Nutrient Search */
+
+  #nutrientSearch {
+    flex-direction: column;
+  }
+
+  #nutrientSearch label {
+    font-size: 16px;
+  }
+
+  #nutrientSearch button, #nutrientSearch select {
+    height: 20px;
+    width: auto;
+    margin-left: 0;
+  }
+
+  #nutrientSearch > * {
+    margin-bottom: 10px;
+  }
+
+  /* NutrientTable */
+
+  .nutrientResultsTitle {
+    font-size: 16px; 
+  }
+
+  .nutrientName, .nutrientDV {
+    font-size: 12px;
+  }
+
+
+  /* Search Results */
+
+  #searchResults {
+    width: 90%;
+  }
+
+  .searchResultsHeader {
+    font-size: 16px;
+  }
+
+  #searchResultsList li {
+    font-size: 12px;
+  }
+
+  #listOfGroup li {
+    font-size: 12px;
+  }
+
+  /* Display Food */
+
+  #displayFood {
+    padding: 0;
+    border: none;
+  }
+
+  #displayFood section{
+    padding: 0;
+    border: none;
+    border-top: 5px solid grey;
+    border-radius: none;
+  }
+
+  #displayFood div {
+    margin: 0 auto;
+    padding: 0;
+    width: auto;
+  }
+
+  #displayFood div:last-of-type {
+    margin: 0 auto;
+  }
+
+  #displayFood ul {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  #displayFood li {
+    display: block;
+  }
+
+  #displayFood select {
+    width: auto;
+    text-align: center;
+    text-align-last: center;
+    border: 1px solid black;
+  }
+
+  #displayFood button {
+    border: 1px solid black;
+  }
+
+  #servingQuantity li {
+    margin-bottom: 10px;
+  }
+
+  #displayFood h3 {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #displayFood table {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+}

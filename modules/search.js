@@ -38,7 +38,6 @@ module.exports = {
   foodDatabase: [],
 
   capitalizeNames: function(foodList) {
-    console.log('capitalizeNames')
     return foodList.map((foodItem)=>{
       foodItem.name = foodItem.name.toLowerCase()
       var nameArr = foodItem.name.split(' ');
@@ -51,7 +50,6 @@ module.exports = {
   },
 
   cleanNames: function(itemsArr){
-    console.log('cleanNames')
     return itemsArr.map((item)=>{
       item.name = item.name.split(', Upc')[0]
       return item;
@@ -59,7 +57,6 @@ module.exports = {
   },
 
   createCategories: function(rawQueryList) {
-    console.log('createCategories')
     var categoriesObj = this.groupQueryListByCategory(rawQueryList);
     var categoriesObjArr = this.reCreateCategoryList(categoriesObj);
     categoriesObjArr = this.sortGroups(categoriesObjArr);
@@ -71,7 +68,6 @@ module.exports = {
   },
 
   groupQueryListByCategory: function(rawQueryList) {
-    console.log('groupQueryListByCategory')
     return rawQueryList.reduce((acc, obj)=> {
      var prop = this.chooseProp(obj);
      var key = obj[prop];
@@ -84,7 +80,6 @@ module.exports = {
  },
 
   reCreateCategoryList: function(catObj) {
-    console.log('reCreateCategoryList')
     var counter = -1;
     var keys = Object.keys(catObj);
     return keys.map((categoryName)=>{
@@ -97,14 +92,12 @@ module.exports = {
   },
 
   condenseCatData: function(catArr){
-    console.log('condenseCatData')
     return catArr.map((catObj)=> {
       return {'id': catObj.id, 'name': catObj.name, 'count': catObj.items.length}
     })
   },
 
   sortAsc: function(catArr) {
-    console.log('sortAsc')
     return catArr.sort((catObj1, catObj2)=>{
       if (catObj1.name > catObj2.name) {
         return 1;
@@ -142,9 +135,8 @@ module.exports = {
   },
 
   getItemsByCatId: function(catId) {
-    console.log('getItemsByCatId');
     var categoryObj = this.searchById(catId);
-    console.log('categoryObj', categoryObj);
+    // console.log('categoryObj', categoryObj);
     categoryObj.items = this.capitalizeNames(categoryObj.items)
     if (this.ds === 'LI') {
       categoryObj.items = this.cleanNames(categoryObj.items)      
@@ -159,7 +151,6 @@ module.exports = {
   },
 
   searchById: function(catId) {
-    console.log('searchByID')
     return this.foodDatabase.filter((catObj)=>{
       if (String(catObj.id) === catId) {
         return catObj;
@@ -168,7 +159,6 @@ module.exports = {
   },
 
   getCategories: function(db, query) {
-    console.log('before apikey')
     var apiKey = GenFunc.usdaApiKey();
     var encodedDB = db === 'SR' ? 'Standard%20Reference' : 'Branded%20Food%20Products'
     var encodedQuery = encodeURIComponent(query);
