@@ -1,5 +1,8 @@
 # Nutrition App
 
+## Why
+The idea came from observing some of the nutritional apps out there that lacked more complete nutritional information.  Vitamins and minerals are just as important as the macros so I sought out what information was available through apis.  The app also need to indicate to the user whether they were getting their daily values and perhaps make known any deficienies in nutrition and suggest what foods would help fix that.
+
 ## Background
 This application allows a user to search for food items using two USDA databases and see their nutritional breakdown depending on the selected serving size. The quantity of the food item can be added to the food log and the totals calculated. You can also find foods based on a specific nutrient and see a total nutritional breakdown of the foods in the food log.
 
