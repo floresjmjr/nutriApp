@@ -25,26 +25,27 @@ This application allows a user to search for food items using two USDA databases
 
 ## Phases
 ### First Phase
-COMPLETED
+*Completed*
 * Create search and CRUD functionalty
 * Allow for food lookup and nutrition lookup
 * Breakdown nutrient info
 * Logs selected food items by quantity and serving size
 
 ### Second Phase
-COMPLETED
+*Completed*
+* Redeploy the website with AWS Beanstalk from Heroku
 * Show breakdown of nutritional info (analysis) using visuals (D3.js, sunburst and bar chart) 
 * Show macros by percentage breakdown
 
-CURRENTLY IN PROGRESS
+*Currently In Progress*
 * Create authentication through AWS Cognito and AWS Amplify
 
-PLANNED TO DO
+*Planned To Do*
 * Store logged items by date and increment date
 * Add in the omega and amino acid data
 
 ### Third Phase
-PLANNED TO DO
+*Planned To Do*
 * Suggest recipes (or food items) based on nutrients that one is lacking in their diet (log)
 * Calculate nutritional info based on specific measurements and ingredients of a given receipe 
 * Import nutritional info through the barcode
