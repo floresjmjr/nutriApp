@@ -32,19 +32,19 @@ COMPLETED
 * Logs selected food items by quantity and serving size
 
 ### Second Phase
-#####COMPLETED
+COMPLETED
 * Show breakdown of nutritional info (analysis) using visuals (D3.js, sunburst and bar chart) 
 * Show macros by percentage breakdown
 
-**CURRENTLY IN PROGRESS**
+CURRENTLY IN PROGRESS
 * Create authentication through AWS Cognito and AWS Amplify
 
-**PLANNED TO DO**
+PLANNED TO DO
 * Store logged items by date and increment date
 * Add in the omega and amino acid data
 
 ### Third Phase
-**PLANNED TO DO**
+PLANNED TO DO
 * Suggest recipes (or food items) based on nutrients that one is lacking in their diet (log)
 * Calculate nutritional info based on specific measurements and ingredients of a given receipe 
 * Import nutritional info through the barcode
