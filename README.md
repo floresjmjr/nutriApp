@@ -1,7 +1,7 @@
 # Nutrition App
 
 ## Background
-This application allows a user to search for food items using two USDA databases and see their nutritional breakdown depending on the selected serving size. The quantity of the food item can be add to the food log and the totals calculated. You can also find foods based on a specific nutrient.
+This application allows a user to search for food items using two USDA databases and see their nutritional breakdown depending on the selected serving size. The quantity of the food item can be added to the food log and the totals calculated. You can also find foods based on a specific nutrient and see a total nutritional breakdown of the foods in the food log.
 
 ## Technologies Used
 ### Front-End
@@ -9,6 +9,7 @@ This application allows a user to search for food items using two USDA databases
 * CSS
 * JavaScript
 * jQuery
+* D3.js
 
 ### Back-end
 * Pug - (Pug makes coding html easy and quicker, i've definetly missed this when using react)
@@ -16,28 +17,33 @@ This application allows a user to search for food items using two USDA databases
 * Express
 
 ### Database
-* MongoDB (Atlas) - (I thought that a NoSql database would have been more practical considering that I would have otherwise needed to create multiple tables and have multiple primary keys and having to connect them all would be messey.
+* MongoDB (Atlas) - (I thought that a NoSql database would have been more practical considering that I would have otherwise needed to create multiple tables and have multiple primary keys and having to connect them all would be messy).
 
 ### Deployment
-* Heroku - (Went with heroku as that's what I knew at the time and the CLI is pretty easy to work with and the documentation pretty clear.)
+* Heroku - (CLI is pretty straightword and the documentation is excellent)
 
 
 ## Phases
 ### First Phase
-* Create search and CRUD functionalty (DONE)
-* Allow for food lookup and nutrition lookup (DONE)
-* Breakdown nutrient info (DONE)
-* Logs selected food items by quantity and serving size (DONE)
+##### Completed
+* Create search and CRUD functionalty
+* Allow for food lookup and nutrition lookup
+* Breakdown nutrient info
+* Logs selected food items by quantity and serving size
 
 ### Second Phase
-* Create authentication
-* Store logged items by date and increment
-* Show breakdown of nutritional info (analysis) using visuals (D3.js, sunburst and bar chart) (DONE)
+##### Completed
+* Show breakdown of nutritional info (analysis) using visuals (D3.js, sunburst and bar chart) 
+* Show macros by percentage breakdown
+##### Currently In Progress
+* Create authentication through AWS Cognito and AWS Amplify
+##### Planned To Do
+* Store logged items by date and increment date
 * Add in the omega and amino acid data
-* Show macros by percentage breakdown (DONE)
+
 
 ## Third Phase
-* Suggest recipes (or food items) based on nutrients that one is lacking in their diet
-* Calculate nutritional info of recipe 
+##### Planned To Do
+* Suggest recipes (or food items) based on nutrients that one is lacking in their diet (log)
+* Calculate nutritional info based on specific measurements and ingredients of a given receipe 
 * Import nutritional info through the barcode
-
