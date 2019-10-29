@@ -25,14 +25,14 @@ This application allows a user to search for food items using two USDA databases
 
 ## Phases
 ### First Phase
-**COMPLETED**
+COMPLETED
 * Create search and CRUD functionalty
 * Allow for food lookup and nutrition lookup
 * Breakdown nutrient info
 * Logs selected food items by quantity and serving size
 
 ### Second Phase
-**COMPLETED**
+#####COMPLETED
 * Show breakdown of nutritional info (analysis) using visuals (D3.js, sunburst and bar chart) 
 * Show macros by percentage breakdown
 
