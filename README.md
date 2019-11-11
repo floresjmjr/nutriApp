@@ -1,7 +1,7 @@
 # Nutrition App
 
 ## Why
-The idea came from observing some of the nutritional apps out there that lacked more complete nutritional information.  Vitamins and minerals are just as important as the macros so I sought out what information was available through apis.  The app also need to indicate to the user whether they were getting their daily values and perhaps make known any deficienies in nutrition and suggest what foods would help fix that.
+The idea came from observing some of the nutritional apps out there that lacked more complete nutritional information.  Vitamins and minerals are just as important as the macros so I sought out what information was available through apis.  The app also need to indicate to the user whether they were getting their daily values and perhaps make known any deficiencies in nutrition and suggest what foods would help fix that.
 
 ## Background
 This application allows a user to search for food items using two USDA databases and see their nutritional breakdown depending on the selected serving size. The quantity of the food item can be added to the food log and the totals calculated. You can also find foods based on a specific nutrient and see a total nutritional breakdown of the foods in the food log.
@@ -15,7 +15,7 @@ This application allows a user to search for food items using two USDA databases
 * D3.js
 
 #### Back-end
-* Pug - (Pug makes coding html easy and quicker, i've definetly missed this when using react)
+* Pug - (Pug makes writing html easy and quicker, I've definitely missed this when using react)
 * Node
 * Express
 
@@ -29,7 +29,7 @@ This application allows a user to search for food items using two USDA databases
 ## Phases
 ### First Phase
 *Completed*
-* Create search and CRUD functionalty
+* Create search and CRUD functionality
 * Allow for food lookup and nutrition lookup
 * Breakdown nutrient info
 * Logs selected food items by quantity and serving size
@@ -50,5 +50,5 @@ This application allows a user to search for food items using two USDA databases
 ### Third Phase
 *Planned To Do*
 * Suggest recipes (or food items) based on nutrients that one is lacking in their diet (log)
-* Calculate nutritional info based on specific measurements and ingredients of a given receipe 
+* Calculate nutritional info based on specific measurements and ingredients of a given recipe 
 * Import nutritional info through the barcode
