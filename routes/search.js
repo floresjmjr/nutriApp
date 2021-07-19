@@ -19,13 +19,15 @@ router.get('/search', function(req, res, next) {
 router.get('/search/results', function(req, res, next) {
   // console.log('request for results');
   Search.getCategories(req.query.db, req.query.query).then((body)=>{
-    if (body.errors) {
-      res.render('searchResults', {error: true,searchTerm: req.query.query})
-    } else {
+    console.log('get data to create categories')
+    if (body.totalHits > 1) {
       res.render('searchResults', { 
-        searchTerm: body.list.q,
-        categories: Search.createCategories(body.list.item),
+        searchTerm: body.foodSearchCriteria.query,
+        categories: Search.createCategories(body.foods),
       });
+      console.log('search results rendered')
+    } else {
+      res.render('searchResults', {error: true,searchTerm: req.query.query})
     }
   }).catch((err)=>{ console.log('Problemo!:', err) })
 })

@@ -1,8 +1,8 @@
 // Database
 const MongoClient = require('mongodb').MongoClient;
-const url = `mongodb+srv://floresjmjr:${process.env.DATABASE_PASSWORD}@cluster0-iw5gt.mongodb.net/test?retryWrites=true`;
+const url = `mongodb+srv://floresjmjr:${process.env.DATABASE_PASSWORD}@clusternutri.xw1wt.mongodb.net/nutriDatabase?retryWrites=true&w=majority`;
 const mOptions = {useNewUrlParser: true}
-const dbName = 'test';
+const dbName = 'nutriDatabase';
 
 var db = {};
 
