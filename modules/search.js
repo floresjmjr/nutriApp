@@ -35,7 +35,7 @@ module.exports = {
     categoryObj = {}                              //name is key, count is value {'Veggies' :  3, 'Nuts': ...}
     rawQueryList.forEach((foodObj)=>{
       let categoryName = foodObj['foodCategory']
-      if(categoryObj[categoryName]){                //
+      if(categoryObj[categoryName]){                
         categoryObj[categoryName] += 1;      
       } else {
         categoryObj[categoryName] = 1;
@@ -54,44 +54,14 @@ module.exports = {
     }
   },
 
-  sortGroups: function(catArr) {
-    console.log('SortGroups')
-    return catArr.sort((cat1, cat2)=>{
-      if (cat1.items.length > cat2.items.length) {
-        return -1
-      }
-      if (cat1.items.length < cat2.items.length) {
-        return 1
-      }
-      return 0;
+  filterItemsByCategory: function(categoryName) {
+    console.log('filterItemsByCategory', this.foodDatabase[0])
+    return this.foodDatabase.filter((foodItem)=>{
+      return foodItem['foodCategory'] === categoryName
     })
   },
 
-  getItemsByCatId: function(catId) {
-    var categoryObj = this.searchById(catId);
-    // console.log('categoryObj', categoryObj);
-    categoryObj.items = this.capitalizeNames(categoryObj.items)
-    if (this.ds === 'LI') {
-      categoryObj.items = this.cleanNames(categoryObj.items)      
-    }
-    categoryObj = this.maxResults(categoryObj)
-    return categoryObj;
-  },
-
-  maxResults(categoryObj) {
-    categoryObj.items = categoryObj.items.slice(0,100)
-    return categoryObj
-  },
-
-  searchById: function(catId) {
-    return this.foodDatabase.filter((catObj)=>{
-      if (String(catObj.id) === catId) {
-        return catObj;
-      }
-    })[0]
-  },
-
-  getCategories: function(db, item) {
+  foodAPI: function(db, item) {
     let key = "api_key=" + GenFunc.usdaApiKey();
     let database = db === 'SR' ? 'SR Legacy' : 'Foundation'
     let datatype = "&dataType=" + database

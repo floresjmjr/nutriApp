@@ -5,15 +5,13 @@ var Item = require(path.resolve(path.dirname(__dirname), './modules/item.js'))
 var Database = require(path.resolve(path.dirname(__dirname), './modules/database.js'))
 
 
-var recentItem = {};
-
 // GET Item details
-router.get('/item/:ndbno', function(req, res, next) {
-  // console.log('request for item');
-  Item.getDetailsByNdbno(req.params.ndbno).then((body)=>{
+router.get('/item/:fdcId', function(req, res, next) {
+  console.log('request for item');
+  Item.foodDetails(req.params.fdcId).then((foodInfo)=>{
     res.render('breakdown', {
       addFood: true,
-      item: Item.createItemObj(body.report.food, req.params.ndbno),
+      item: Item.createItemObj(foodInfo),
     });
   });
 })

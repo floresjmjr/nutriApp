@@ -33,12 +33,12 @@ module.exports = {
   components: GenFunc.components,
   recentItem: {},
 
-  createItemObj: function(rawObj, ndbno) {
+  createItemObj: function(food) {
     var newItemObj = {};
-    newItemObj['name'] = GenFunc.cleanName(rawObj.name)
+    newItemObj['name'] = GenFunc.cleanName(food.description)
     newItemObj['serving'] = {qty: '', label: '', eqv: '100', eunit: rawObj.ru}
     newItemObj['measurements'] = this.reCreateMeasurements(rawObj.nutrients[0].measures)
-    newItemObj['ndbno'] = ndbno;
+    newItemObj['fdcId'] = rawObj.fdcId;
     //Nutrients
     var partialItemObj = this.groupNutrientTypes(rawObj.nutrients)
     partialItemObj = this.reCreateItemObj(partialItemObj)
@@ -259,9 +259,10 @@ module.exports = {
     })
   },
 
-  getDetailsByNdbno: function(ndbnoId){
-    var apiKey = GenFunc.usdaApiKey();
-    var encodedPath = `https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbnoId}&type=f&format=json&api_key=${apiKey}`
+  foodDetails: function(fdcId){
+    let apiKey = GenFunc.usdaApiKey();
+    let key = "api_key=" + apiKey
+    let encodedPath = `https://api.nal.usda.gov/fdc/v1/${fdcId}?${key}`
     return GenFunc.usdaRequest(encodedPath)
   },
 

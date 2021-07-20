@@ -18,9 +18,10 @@ router.get('/search', function(req, res, next) {
 // GET Results
 router.get('/search/results', function(req, res, next) {
   // console.log('request for results');
-  Search.getCategories(req.query.db, req.query.query).then((body)=>{
-    console.log('get data to create categories')
+  Search.foodAPI(req.query.db, req.query.query).then((body)=>{
+    console.log('get food items  to create categories')
     if (body.totalHits > 1) {
+      Search.foodDatabase = body.foods;
       res.render('searchResults', { 
         searchTerm: body.foodSearchCriteria.query,
         categories: Search.createCategories(body.foods),
@@ -33,11 +34,12 @@ router.get('/search/results', function(req, res, next) {
 })
 
 // GET Category items
-router.get('/category/:id', function(req, res, next) {
-  // console.log('request for category');
-  var id = req.params.id;
+router.get('/:food/:category', function(req, res, next) {
+  console.log('request for category', req.params.category);
+  let category = req.params.category;
   res.render('groupList', {
-    category: Search.getItemsByCatId(id),
+    categoryName: category,
+    itemList: Search.filterItemsByCategory(category),
   });
 })
 
