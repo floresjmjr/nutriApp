@@ -1,5 +1,7 @@
 # Nutrition App
 
+https://nutri-app-node-js.herokuapp.com
+
 ## Why
 The idea came from observing some of the nutritional apps out there that lacked more complete nutritional information.  Vitamins and minerals are just as important as the macros so I sought out what information was available through apis.  The app also need to indicate to the user whether they were getting their daily values and perhaps make known any deficiencies in nutrition and suggest what foods would help fix that.
 
