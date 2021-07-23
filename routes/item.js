@@ -6,7 +6,7 @@ var Database = require(path.resolve(path.dirname(__dirname), './modules/database
 
 
 // GET Item details
-router.get('/item/:fdcId', function(req, res, next) {
+router.get('/item/:fdcId', (req, res, next)=> {
   console.log('request for item');
   Item.foodDetails(req.params.fdcId).then((foodInfo)=>{
     res.render('breakdown', {
@@ -17,11 +17,11 @@ router.get('/item/:fdcId', function(req, res, next) {
 })
 
 // POST request for logging food
-router.post('/item/:ndbno', (req, res, next)=>{
-  // console.log('add item', req.body.qty);
+router.post('/item/:fdcId', (req, res, next)=>{
+  console.log('add item', req.body.qty);
   Item.recentItem['qty'] = req.body.qty;
   Database.insertEntry(Item.recentItem).then((rObj)=>{
-    // console.log('returned object :', rObj);
+    console.log('returned object :', rObj);
     // Needs a more appropriate way to valid that an entry was made
     if(rObj){
       res.sendStatus(200);
@@ -37,7 +37,7 @@ router.get('/serving', (req, res, next)=>{
   // console.log('serving GET', req.query)
   res.render('breakdown', {
     addFood: true,
-    item: Item.updateItem(req.query.serving),
+    item: Item.updateNutrientValues(req.query.serving),
   });
 })
 

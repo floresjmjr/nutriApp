@@ -17,7 +17,7 @@ router.get('/search', function(req, res, next) {
 
 // GET Results
 router.get('/search/results', function(req, res, next) {
-  // console.log('request for results');
+  console.log('request for results');
   Search.foodAPI(req.query.db, req.query.query).then((body)=>{
     console.log('get food items  to create categories')
     if (body.totalHits > 1) {
@@ -34,7 +34,7 @@ router.get('/search/results', function(req, res, next) {
 })
 
 // GET Category items
-router.get('/:food/:category', function(req, res, next) {
+router.get('/category/:category', function(req, res, next) {
   console.log('request for category', req.params.category);
   let category = req.params.category;
   res.render('groupList', {

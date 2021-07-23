@@ -67,7 +67,7 @@ module.exports = {
     let datatype = "&dataType=" + database
     let query = "&query=" + encodeURIComponent(item);
     resultSize = "&pageSize=" + "20"
-    var encodedPath = "https://api.nal.usda.gov/fdc/v1/foods/search?" + key + query + datatype + resultSize
+    var encodedPath = "https://api.nal.usda.gov/fdc/v1/foods/search?" + key + query
     return GenFunc.usdaRequest(encodedPath);
   }
 

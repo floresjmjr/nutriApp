@@ -12,11 +12,11 @@ block content
           li 
             form(method='GET' action=`/serving`)
               select(name='serving')
-                option #{item.serving.qty} #{item.serving.label} (#{item.serving.eqv}#{item.serving.eunit})
+                option #{item.serving.qty} #{item.serving.label} (#{item.serving.eqv} #{item.serving.eunit})
                 each m in item.measurements
-                  option(value=`${m.qty}? ${m.label}? ${m.eqv}? ${m.eunit}`) #{m.qty} #{m.label} (#{m.eqv}#{m.eunit})
+                  option(value=`${m.qty}? ${m.label}? ${m.eqv}?`) #{m.qty} #{m.label} (#{m.eqv} #{m.eunit})
           li
-            button(name='addToLog' value=item.ndbno) Add Item
+            button(name='addToLog' value=item.fdcId) Add Item
     if(totals)
         h2(class='mainHeader') Your Nutrition Overview
     if(item)
