@@ -43,9 +43,10 @@ module.exports = {
   },
 
   createServingSizeObj: function(serving){
-    let s = serving.split('? ')
+    console.log('createServingSizeObj', serving)
+    let s = serving.split('?')
     let obj = {label: s[1], eqv: s[2], qty: s[0], eunit: 'grams'}
-    console.log('createServingSizeObj', obj)
+    console.log('createServingSizeObj after', obj)
     return obj
   },
 

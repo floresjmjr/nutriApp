@@ -14,7 +14,7 @@ block content
               select(name='serving')
                 option #{item.serving.qty} #{item.serving.label} (#{item.serving.eqv} #{item.serving.eunit})
                 each m in item.measurements
-                  option(value=`${m.qty}? ${m.label}? ${m.eqv}?`) #{m.qty} #{m.label} (#{m.eqv} #{m.eunit})
+                  option(value=`${m.qty}?${m.label}?${m.eqv}?`) #{m.qty} #{m.label} (#{m.eqv} #{m.eunit})
           li
             button(name='addToLog' value=item.fdcId) Add Item
     if(totals)
