@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
-    "d3": "^5.9.2",
+    "d3": "^7.6.1",
     "debug": "~2.6.9",
     "dotenv": "^8.0.0",
     "express": "~4.16.0",
